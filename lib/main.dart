@@ -7,7 +7,11 @@ ThemeData getThemeData() {
       primaryColor: DSColors().primaryColor,
       primarySwatch: DSColors().secondaryColor.getMaterialColor(),
       scaffoldBackgroundColor: DSColors().background,
-      appBarTheme: const AppBarTheme(elevation: 5),
+      appBarTheme: AppBarTheme(
+        elevation: 5,
+        foregroundColor: DSColors().appbarForeground,
+        backgroundColor: DSColors().appbarBackground,
+      ),
       visualDensity: VisualDensity.adaptivePlatformDensity);
 }
 

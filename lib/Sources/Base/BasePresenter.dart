@@ -2,13 +2,11 @@ import 'package:elegant_notification/elegant_notification.dart';
 import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/stacked_options.dart';
 import 'package:flutter/material.dart';
-import 'package:ofm_demo/Sources/Coordinator/AppCoordinator.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
 class BasePresenter {
   // Properties
   late BuildContext context;
-  AppCoordinator? coordinator;
   RxNotifier<bool> isLoadingList = RxNotifier(false);
   final bool isOpaque = false;
 

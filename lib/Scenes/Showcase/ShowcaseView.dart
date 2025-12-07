@@ -31,6 +31,7 @@ class _ShowcaseViewState extends State<ShowcaseView> {
   @override
   Widget build(BuildContext context) {
     return BaseView(
+        appBar: widget.presenter.appBar,
         body: RxBuilder(builder: (context) {
           return SingleChildScrollView(
             child: Column(

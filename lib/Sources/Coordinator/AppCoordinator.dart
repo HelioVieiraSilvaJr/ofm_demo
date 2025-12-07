@@ -39,7 +39,10 @@ class AppCoordinator implements Coordinator {
 
   // Métodos de navegação específicos
   void showShowcase(String path) {
-    final presenter = ShowcasePresenter(path);
+    final appbar = AppBar(
+      title: const Text(''),
+    );
+    final presenter = ShowcasePresenter(path: path, appBar: appbar);
     presenter.coordinator = this;
 
     navigatorKey.currentState?.push(

@@ -6,6 +6,8 @@ class DSColors {
   Color accentColor = const Color(0xFFFFD700);
   Color tint = Colors.black;
   Color backgroundLight = const Color.fromARGB(255, 171, 202, 245);
+  Color appbarForeground = Colors.black;
+  Color appbarBackground = const Color.fromRGBO(194, 184, 171, 1);
 
   /// Text
   Color textPrimary = const Color.fromRGBO(0, 0, 0, 1.0);

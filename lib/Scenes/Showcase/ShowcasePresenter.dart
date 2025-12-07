@@ -1,16 +1,20 @@
+import 'package:flutter/material.dart';
 import 'package:ofm_demo/Commons/Enums/ActionType.dart';
 import 'package:ofm_demo/Commons/Models/ItemModel.dart';
 import 'package:ofm_demo/Commons/Models/SectionModel.dart';
 import 'package:ofm_demo/Sources/Base/BasePresenter.dart';
 import 'package:ofm_demo/Scenes/Showcase/ShowcaseViewModel.dart';
+import 'package:ofm_demo/Sources/Coordinator/AppCoordinator.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
 class ShowcasePresenter extends BasePresenter {
   // MARK: Properties
+  final AppBar? appBar;
   late final ShowcaseViewModel viewModel;
+  AppCoordinator? coordinator;
   RxNotifier<List<SectionModel>> sections = RxNotifier<List<SectionModel>>([]);
 
-  ShowcasePresenter(String path) {
+  ShowcasePresenter({required String path, this.appBar}) {
     viewModel = ShowcaseViewModel(path);
     _bindEvents();
   }

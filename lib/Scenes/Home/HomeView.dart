@@ -22,7 +22,7 @@ class _HomeviewState extends State<Homeview> {
   @override
   void initState() {
     super.initState();
-    showcasePresenter = ShowcasePresenter('/showcase/home');
+    showcasePresenter = ShowcasePresenter(path: '/showcase/home', appBar: null);
     showcasePresenter.coordinator = widget.coordinator;
   }
 
