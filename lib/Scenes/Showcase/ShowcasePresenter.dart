@@ -22,8 +22,14 @@ class ShowcasePresenter extends BasePresenter {
   }
 
   // MARK: Actions
-  void onItemClicked(ItemModel item) {
-    print('Image clicked for item: ${item.toJSON()}');
+  onItemClicked(ItemModel item) {
+    print('Item clicked: ${item.toJSON()}');
+  }
+
+  openLink(String? url) {
+    if (url != null) {
+      print('Open link: $url');
+    }
   }
 
   // MARK: Methods

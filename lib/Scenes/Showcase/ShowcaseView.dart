@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ofm_demo/Commons/Models/SectionModel.dart';
 import 'package:ofm_demo/Scenes/Showcase/ShowcasePresenter.dart';
 import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseBubbleWidget.dart';
+import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseContentMarkdown.dart';
 import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcasePageBigImageWidget.dart';
 import 'package:ofm_demo/Sources/Base/BaseScreen.dart';
 import 'package:rx_notifier/rx_notifier.dart';
@@ -28,19 +29,24 @@ class _ShowcaseViewState extends State<ShowcaseView> {
   Widget build(BuildContext context) {
     return BaseView(
         body: RxBuilder(builder: (context) {
-          return Column(
-              children: presenter.sections.value.map((section) {
-            switch (section.type) {
-              case SectionType.pageBigImage:
-                return ShowcasePageBigImageWidget(
-                    section: section, onTap: presenter.onItemClicked);
-              case SectionType.bubbles:
-                return ShowcaseBubbleWidget(
-                    section: section, onTap: presenter.onItemClicked);
-              default:
-                return SizedBox.shrink();
-            }
-          }).toList());
+          return SingleChildScrollView(
+            child: Column(
+                children: presenter.sections.value.map((section) {
+              switch (section.type) {
+                case SectionType.bigImage:
+                  return ShowcasePageBigImageWidget(
+                      section: section, onTap: presenter.onItemClicked);
+                case SectionType.bubbles:
+                  return ShowcaseBubbleWidget(
+                      section: section, onTap: presenter.onItemClicked);
+                case SectionType.contentMarkdown:
+                  return ShowcaseContentMarkdown(
+                      section: section, openLink: presenter.openLink);
+                default:
+                  return SizedBox.shrink();
+              }
+            }).toList()),
+          );
         }),
         presenter: widget.presenter);
   }

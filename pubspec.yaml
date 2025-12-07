@@ -39,6 +39,7 @@ dependencies:
   elegant_notification: ^2.4.4
   http: ^1.2.2
   cached_network_image: ^3.4.1
+  flutter_markdown_plus: ^1.0.5
 
 dev_dependencies:
   flutter_test:

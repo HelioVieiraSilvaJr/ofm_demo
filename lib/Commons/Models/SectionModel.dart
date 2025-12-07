@@ -38,33 +38,33 @@ class SectionModel {
 }
 
 enum SectionType {
-  pageBigImage,
+  bigImage,
   singleWideImage,
-  listSmallImage,
+  doubleWideImages,
   categories,
   listWideImage,
   bubbles,
-  listServices,
+  contentMarkdown,
   none;
 }
 
 extension SectionTypeExtension on SectionType {
   String get rawValue {
     switch (this) {
-      case SectionType.pageBigImage:
-        return 'pageBigImage';
+      case SectionType.bigImage:
+        return 'bigImage';
       case SectionType.singleWideImage:
         return 'singleWideImage';
-      case SectionType.listSmallImage:
-        return 'listSmallImage';
+      case SectionType.doubleWideImages:
+        return 'doubleWideImages';
       case SectionType.categories:
         return 'categories';
       case SectionType.listWideImage:
         return 'listWideImage';
       case SectionType.bubbles:
         return 'bubbles';
-      case SectionType.listServices:
-        return 'listServices';
+      case SectionType.contentMarkdown:
+        return 'contentMarkdown';
       case SectionType.none:
         return 'none';
     }
@@ -72,20 +72,20 @@ extension SectionTypeExtension on SectionType {
 
   String get value {
     switch (this) {
-      case SectionType.pageBigImage:
-        return 'Page Big Image';
+      case SectionType.bigImage:
+        return 'Big Image';
       case SectionType.singleWideImage:
         return 'Single Wide Image';
-      case SectionType.listSmallImage:
-        return 'List Small Image';
+      case SectionType.doubleWideImages:
+        return 'Double Wide Images';
       case SectionType.categories:
         return 'Categories';
       case SectionType.listWideImage:
         return 'List Wide Image';
       case SectionType.bubbles:
         return 'Bubbles';
-      case SectionType.listServices:
-        return 'List Services';
+      case SectionType.contentMarkdown:
+        return 'Content Markdown';
       case SectionType.none:
         return 'None';
     }
