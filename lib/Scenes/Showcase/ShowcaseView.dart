@@ -6,6 +6,7 @@ import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseCategoriesWidget.dart';
 import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseContentMarkdown.dart';
 import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseDoubleWideImages.dart';
 import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcasePageBigImageWidget.dart';
+import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseProductGridWidget.dart';
 import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseWideImage.dart';
 import 'package:ofm_demo/Sources/Base/BaseScreen.dart';
 import 'package:rx_notifier/rx_notifier.dart';
@@ -51,6 +52,9 @@ class _ShowcaseViewState extends State<ShowcaseView> {
                       section: section, onTap: presenter.onItemClicked);
                 case SectionType.bubbles:
                   return ShowcaseBubbleWidget(
+                      section: section, onTap: presenter.onItemClicked);
+                case SectionType.productList:
+                  return ShowcaseProductGridWidget(
                       section: section, onTap: presenter.onItemClicked);
                 case SectionType.contentMarkdown:
                   return ShowcaseContentMarkdown(

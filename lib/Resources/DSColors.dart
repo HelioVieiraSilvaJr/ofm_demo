@@ -15,7 +15,7 @@ class DSColors {
   Color textGray = const Color.fromRGBO(76, 80, 77, 1.0);
 
   /// Background
-  Color background = const Color.fromRGBO(241, 240, 240, 1.0);
+  Color background = const Color.fromRGBO(255, 255, 255, 1.0);
 }
 
 extension ColorExtension on Color {

@@ -35,7 +35,7 @@ class ShowcasePresenter extends BasePresenter {
       case ActionType.openExternalLink:
         coordinator?.openLink(item.link);
         break;
-      case ActionType.goToCart:
+      case ActionType.cart:
         coordinator?.goToCart();
         break;
       default:

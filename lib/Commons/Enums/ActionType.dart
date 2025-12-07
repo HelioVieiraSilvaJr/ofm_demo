@@ -1,7 +1,8 @@
 enum ActionType {
   showcase,
   openExternalLink,
-  goToCart,
+  cart,
+  productDetail,
   none;
 }
 
@@ -12,8 +13,10 @@ extension ActionTypeExtension on ActionType {
         return 'showcase';
       case ActionType.openExternalLink:
         return 'openExternalLink';
-      case ActionType.goToCart:
-        return 'goToCart';
+      case ActionType.cart:
+        return 'cart';
+      case ActionType.productDetail:
+        return 'productDetail';
       case ActionType.none:
         return 'none';
     }

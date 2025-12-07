@@ -6,6 +6,7 @@ enum SectionType {
   listWideImage,
   bubbles,
   contentMarkdown,
+  productList,
   none;
 }
 
@@ -26,6 +27,8 @@ extension SectionTypeExtension on SectionType {
         return 'bubbles';
       case SectionType.contentMarkdown:
         return 'contentMarkdown';
+      case SectionType.productList:
+        return 'productList';
       case SectionType.none:
         return 'none';
     }
