@@ -32,13 +32,14 @@ class Network {
       {Map<String, String>? params, Map<String, String>? headers}) async {
     try {
       final finalHeaders = _prepareHeaders(headers);
+      final finalUrl =
+          Uri.parse('$baseUrl$endpoint').replace(queryParameters: params);
       final response = await http.get(
-        Uri.parse('$baseUrl$endpoint').replace(queryParameters: params),
+        finalUrl,
         headers: finalHeaders,
       );
       return _buildResponse(response);
     } catch (e) {
-      print('Network.get error: $e');
       return NetworkResponse(
         bodyResponse: {'error': e.toString()},
         statusCode: 500,

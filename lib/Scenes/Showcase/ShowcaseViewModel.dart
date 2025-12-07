@@ -21,16 +21,14 @@ class ShowcaseViewModel {
   // MARK: Services
   fetch() async {
     final network = Network();
-    print('==> ShowcaseViewModel.fetch: Fetching data for path $_path');
 
     final result = await network
         .get('$_path', headers: {'Content-Type': 'application/json'});
 
     final cacheKey = 'showcase_$_path';
     final showcase = ShowcaseModel.initFromMap(data: result.bodyResponse);
-    // CacheManager.instance.set(cacheKey, showcase);
+    CacheManager.instance.set(cacheKey, showcase);
     _showcase = showcase;
-    print('==> ShowcaseViewModel.fetch: $_showcase');
     shouldUpdateUI!();
   }
 }

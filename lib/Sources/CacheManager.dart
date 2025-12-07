@@ -1,3 +1,5 @@
+import 'package:ofm_demo/Sources/Constants.dart';
+
 /// Gerenciador de cache em memória para armazenar dados durante a execução da aplicação.
 ///
 /// Permite armazenar e recuperar valores de qualquer tipo usando um sistema de chave-valor.
@@ -40,6 +42,9 @@ class CacheManager {
   /// List<int>? items = CacheManager.instance.get<List<int>>('items');
   /// ```
   T? get<T>(String key) {
+    if (kCacheEnabled == false) {
+      return null;
+    }
     final value = _cache[key];
     if (value == null) return null;
 

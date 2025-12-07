@@ -18,7 +18,7 @@ class _HomeviewState extends State<Homeview> {
   // MARK: View
   @override
   Widget build(BuildContext context) {
-    final presenter = ShowcasePresenter('/showcase/mensTrousers');
+    final presenter = ShowcasePresenter('/showcase/home');
 
     return BaseView(
       body: ShowcaseView(presenter: presenter),
