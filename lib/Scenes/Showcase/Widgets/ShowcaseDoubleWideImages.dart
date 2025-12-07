@@ -16,7 +16,7 @@ class ShowcaseDoubleWideImages extends StatelessWidget {
     const aspectRatio = 1.0;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
