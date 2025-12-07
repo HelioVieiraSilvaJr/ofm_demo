@@ -3,11 +3,13 @@ import 'ItemModel.dart';
 class SectionModel {
   final SectionType type;
   final String? title;
+  final String? imageUrl;
   final List<ItemModel> items;
 
   SectionModel({
     required this.type,
     this.title,
+    this.imageUrl,
     required this.items,
   });
 
@@ -19,6 +21,7 @@ class SectionModel {
     final model = SectionModel(
       type: SectionTypeExtension.unwrapped(data['type']),
       title: data['title'],
+      imageUrl: data['imageUrl'],
       items: items,
     );
     return model;
@@ -27,14 +30,14 @@ class SectionModel {
   toJSON() {
     return {
       'type': type.rawValue,
-      'title': title,
+      'imageUrl': imageUrl,
       'items': items.map((e) => e.toJSON()).toList(),
     };
   }
 
   @override
   String toString() {
-    return 'SectionModel(type: ${type.rawValue}, title: $title, items: $items)';
+    return 'SectionModel(type: ${type.rawValue}, imageUrl: $imageUrl, items: $items)';
   }
 }
 

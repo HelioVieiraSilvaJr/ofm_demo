@@ -20,6 +20,11 @@ class ShowcasePresenter extends BasePresenter {
     };
   }
 
+  // MARK: Actions
+  void onSectionClicked(SectionModel section) {
+    print('Image clicked for section: ${section.toJSON()}');
+  }
+
   // MARK: Methods
   loadData() {
     viewModel.fetch();

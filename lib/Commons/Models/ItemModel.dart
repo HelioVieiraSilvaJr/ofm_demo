@@ -1,11 +1,11 @@
 class ItemModel {
-  final String image;
+  final String imageUrl;
   final String? title;
   final String? text;
   final String deeplink;
 
   ItemModel({
-    required this.image,
+    required this.imageUrl,
     this.title,
     this.text,
     required this.deeplink,
@@ -13,7 +13,7 @@ class ItemModel {
 
   factory ItemModel.initFromMap({required Map<String, dynamic> data}) {
     final model = ItemModel(
-      image: data['image'] ?? '',
+      imageUrl: data['imageUrl'] ?? '',
       title: data['title'],
       text: data['text'],
       deeplink: data['deeplink'] ?? '',
@@ -23,7 +23,7 @@ class ItemModel {
 
   toJSON() {
     return {
-      'image': image,
+      'imageUrl': imageUrl,
       'title': title,
       'text': text,
       'deeplink': deeplink,
@@ -32,6 +32,6 @@ class ItemModel {
 
   @override
   String toString() {
-    return 'ItemModel(image: $image, title: $title, text: $text, deeplink: $deeplink)';
+    return 'ItemModel(imageUrl: $imageUrl, title: $title, text: $text, deeplink: $deeplink)';
   }
 }

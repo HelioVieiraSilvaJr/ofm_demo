@@ -38,6 +38,7 @@ dependencies:
   rx_notifier: ^2.3.0
   elegant_notification: ^2.4.4
   http: ^1.2.2
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:
