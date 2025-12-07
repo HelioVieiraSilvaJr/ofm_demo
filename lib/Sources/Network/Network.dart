@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:ofm_demo/Sorces/Constants.dart';
+import 'package:ofm_demo/Sources/Constants.dart';
 
 class NetworkResponse {
   final dynamic bodyResponse;
@@ -12,10 +12,10 @@ class NetworkResponse {
   });
 }
 
-class NetworkNew {
+class Network {
   final String baseUrl;
 
-  NetworkNew([String? url]) : baseUrl = url ?? kBaseURL;
+  Network([String? url]) : baseUrl = url ?? kBaseURL;
 
   Map<String, String> _prepareHeaders(Map<String, String>? headers) {
     final Map<String, String> finalHeaders =
@@ -30,12 +30,20 @@ class NetworkNew {
 
   Future<NetworkResponse> get(String endpoint,
       {Map<String, String>? params, Map<String, String>? headers}) async {
-    final finalHeaders = _prepareHeaders(headers);
-    final response = await http.get(
-      Uri.parse('$baseUrl$endpoint').replace(queryParameters: params),
-      headers: finalHeaders,
-    );
-    return _buildResponse(response);
+    try {
+      final finalHeaders = _prepareHeaders(headers);
+      final response = await http.get(
+        Uri.parse('$baseUrl$endpoint').replace(queryParameters: params),
+        headers: finalHeaders,
+      );
+      return _buildResponse(response);
+    } catch (e) {
+      print('Network.get error: $e');
+      return NetworkResponse(
+        bodyResponse: {'error': e.toString()},
+        statusCode: 500,
+      );
+    }
   }
 
   Future<NetworkResponse> post(String endpoint,

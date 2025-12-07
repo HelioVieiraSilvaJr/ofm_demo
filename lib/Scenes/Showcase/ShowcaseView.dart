@@ -1,19 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Scenes/Showcase/ShowcasePresenter.dart';
-import 'package:ofm_demo/Sorces/Base/BaseScreen.dart';
+import 'package:ofm_demo/Sources/Base/BaseScreen.dart';
 
-class Showcaseview extends StatefulWidget {
-  const Showcaseview({super.key});
+class ShowcaseView extends StatefulWidget {
+  final ShowcasePresenter presenter;
+
+  const ShowcaseView({super.key, required this.presenter});
 
   @override
-  State<Showcaseview> createState() => _ShowcaseviewState();
+  State<ShowcaseView> createState() => _ShowcaseViewState();
 }
 
-class _ShowcaseviewState extends State<Showcaseview> {
-  final ShowcasePresenter presenter = ShowcasePresenter();
+class _ShowcaseViewState extends State<ShowcaseView> {
+  @override
+  void initState() {
+    super.initState();
+
+    widget.presenter.loadData();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return BaseView(body: Container(), presenter: presenter);
+    return BaseView(
+        body: Container(
+          color: Colors.amber,
+        ),
+        presenter: widget.presenter);
   }
 }
