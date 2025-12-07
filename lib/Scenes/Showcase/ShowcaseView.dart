@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Commons/Models/SectionModel.dart';
 import 'package:ofm_demo/Scenes/Showcase/ShowcasePresenter.dart';
+import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseBubbleWidget.dart';
 import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcasePageBigImageWidget.dart';
 import 'package:ofm_demo/Sources/Base/BaseScreen.dart';
 import 'package:rx_notifier/rx_notifier.dart';
@@ -15,7 +16,6 @@ class ShowcaseView extends StatefulWidget {
 }
 
 class _ShowcaseViewState extends State<ShowcaseView> {
-
   late final presenter = widget.presenter;
 
   @override
@@ -33,13 +33,15 @@ class _ShowcaseViewState extends State<ShowcaseView> {
             switch (section.type) {
               case SectionType.pageBigImage:
                 return ShowcasePageBigImageWidget(
-                    section: section, onTap: presenter.onSectionClicked);
+                    section: section, onTap: presenter.onItemClicked);
+              case SectionType.bubbles:
+                return ShowcaseBubbleWidget(
+                    section: section, onTap: presenter.onItemClicked);
               default:
                 return SizedBox.shrink();
             }
           }).toList());
-        }
-        ),
+        }),
         presenter: widget.presenter);
   }
 }

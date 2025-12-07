@@ -1,3 +1,4 @@
+import 'package:ofm_demo/Commons/Models/ItemModel.dart';
 import 'package:ofm_demo/Commons/Models/SectionModel.dart';
 import 'package:ofm_demo/Sources/Base/BasePresenter.dart';
 import 'package:ofm_demo/Scenes/Showcase/ShowcaseViewModel.dart';
@@ -21,8 +22,8 @@ class ShowcasePresenter extends BasePresenter {
   }
 
   // MARK: Actions
-  void onSectionClicked(SectionModel section) {
-    print('Image clicked for section: ${section.toJSON()}');
+  void onItemClicked(ItemModel item) {
+    print('Image clicked for item: ${item.toJSON()}');
   }
 
   // MARK: Methods
