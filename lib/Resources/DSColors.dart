@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class DSColors {
   Color primaryColor = const Color(0xFF001F3F);
-  Color secundaryColor = const Color(0xFF003366);
+  Color secondaryColor = const Color(0xFF003366);
   Color accentColor = const Color(0xFFFFD700);
   Color tint = Colors.black;
   Color backgroundLight = const Color.fromARGB(255, 171, 202, 245);

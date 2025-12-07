@@ -1,0 +1,3 @@
+class ShowcaseViewModel {
+  // MARK: Properties
+}
