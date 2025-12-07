@@ -1,3 +1,5 @@
+import 'package:ofm_demo/Commons/Enums/SectionType.dart';
+
 import 'ItemModel.dart';
 
 class SectionModel {
@@ -37,74 +39,4 @@ class SectionModel {
   }
 }
 
-enum SectionType {
-  bigImage,
-  singleWideImage,
-  doubleWideImages,
-  categories,
-  listWideImage,
-  bubbles,
-  contentMarkdown,
-  none;
-}
 
-extension SectionTypeExtension on SectionType {
-  String get rawValue {
-    switch (this) {
-      case SectionType.bigImage:
-        return 'bigImage';
-      case SectionType.singleWideImage:
-        return 'singleWideImage';
-      case SectionType.doubleWideImages:
-        return 'doubleWideImages';
-      case SectionType.categories:
-        return 'categories';
-      case SectionType.listWideImage:
-        return 'listWideImage';
-      case SectionType.bubbles:
-        return 'bubbles';
-      case SectionType.contentMarkdown:
-        return 'contentMarkdown';
-      case SectionType.none:
-        return 'none';
-    }
-  }
-
-  String get value {
-    switch (this) {
-      case SectionType.bigImage:
-        return 'Big Image';
-      case SectionType.singleWideImage:
-        return 'Single Wide Image';
-      case SectionType.doubleWideImages:
-        return 'Double Wide Images';
-      case SectionType.categories:
-        return 'Categories';
-      case SectionType.listWideImage:
-        return 'List Wide Image';
-      case SectionType.bubbles:
-        return 'Bubbles';
-      case SectionType.contentMarkdown:
-        return 'Content Markdown';
-      case SectionType.none:
-        return 'None';
-    }
-  }
-
-  static List<SectionType> getList() {
-    return SectionType.values;
-  }
-
-  static SectionType unwrapped(String? key) {
-    var status = SectionType.none;
-    if (key != null) {
-      try {
-        status = SectionType.values.firstWhere(
-          (value) => value.toString() == 'SectionType.$key',
-          orElse: () => SectionType.none,
-        );
-      } catch (_) {}
-    }
-    return status;
-  }
-}

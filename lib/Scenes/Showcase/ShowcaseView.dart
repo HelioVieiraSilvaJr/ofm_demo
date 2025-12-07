@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ofm_demo/Commons/Enums/SectionType.dart';
 import 'package:ofm_demo/Commons/Models/SectionModel.dart';
 import 'package:ofm_demo/Scenes/Showcase/ShowcasePresenter.dart';
 import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseBubbleWidget.dart';
@@ -6,6 +7,7 @@ import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseCategoriesWidget.dart';
 import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseContentMarkdown.dart';
 import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseDoubleWideImages.dart';
 import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcasePageBigImageWidget.dart';
+import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseWideImage.dart';
 import 'package:ofm_demo/Sources/Base/BaseScreen.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
@@ -40,6 +42,9 @@ class _ShowcaseViewState extends State<ShowcaseView> {
                       section: section, onTap: presenter.onItemClicked);
                 case SectionType.doubleWideImages:
                   return ShowcaseDoubleWideImages(
+                      section: section, onTap: presenter.onItemClicked);
+                case SectionType.wideImage:
+                  return ShowcaseWideImage(
                       section: section, onTap: presenter.onItemClicked);
                 case SectionType.categories:
                   return ShowcaseCategoriesWidget(
