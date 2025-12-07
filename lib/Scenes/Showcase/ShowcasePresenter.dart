@@ -1,3 +1,4 @@
+import 'package:ofm_demo/Commons/Enums/ActionType.dart';
 import 'package:ofm_demo/Commons/Models/ItemModel.dart';
 import 'package:ofm_demo/Commons/Models/SectionModel.dart';
 import 'package:ofm_demo/Sources/Base/BasePresenter.dart';
@@ -23,13 +24,23 @@ class ShowcasePresenter extends BasePresenter {
 
   // MARK: Actions
   onItemClicked(ItemModel item) {
-    print('Item clicked: ${item.toJSON()}');
+    switch (item.action) {
+      case ActionType.showcase:
+        coordinator?.showShowcase(item.link);
+        break;
+      case ActionType.openExternalLink:
+        coordinator?.openLink(item.link);
+        break;
+      case ActionType.goToCart:
+        coordinator?.goToCart();
+        break;
+      default:
+        print('==> No action defined for this item');
+    }
   }
 
   openLink(String? url) {
-    if (url != null) {
-      print('Open link: $url');
-    }
+    coordinator?.openLink(url);
   }
 
   // MARK: Methods

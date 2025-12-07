@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Commons/Enums/SectionType.dart';
-import 'package:ofm_demo/Commons/Models/SectionModel.dart';
 import 'package:ofm_demo/Scenes/Showcase/ShowcasePresenter.dart';
 import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseBubbleWidget.dart';
 import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseCategoriesWidget.dart';

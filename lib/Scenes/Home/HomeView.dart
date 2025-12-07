@@ -3,9 +3,12 @@ import 'package:ofm_demo/Scenes/Home/HomePresenter.dart';
 import 'package:ofm_demo/Scenes/Showcase/ShowcasePresenter.dart';
 import 'package:ofm_demo/Scenes/Showcase/ShowcaseView.dart';
 import 'package:ofm_demo/Sources/Base/BaseScreen.dart';
+import 'package:ofm_demo/Sources/Coordinator/AppCoordinator.dart';
 
 class Homeview extends StatefulWidget {
-  const Homeview({super.key});
+  final AppCoordinator? coordinator;
+
+  const Homeview({super.key, this.coordinator});
 
   @override
   State<Homeview> createState() => _HomeviewState();
@@ -14,15 +17,21 @@ class Homeview extends StatefulWidget {
 class _HomeviewState extends State<Homeview> {
   // MARK: Properties
   final HomePresenter presenter = HomePresenter();
+  late final ShowcasePresenter showcasePresenter;
+
+  @override
+  void initState() {
+    super.initState();
+    showcasePresenter = ShowcasePresenter('/showcase/home');
+    showcasePresenter.coordinator = widget.coordinator;
+  }
 
   // MARK: View
   @override
   Widget build(BuildContext context) {
-    final presenter = ShowcasePresenter('/showcase/home');
-
     return BaseView(
-      body: ShowcaseView(presenter: presenter),
-      presenter: presenter,
+      body: ShowcaseView(presenter: showcasePresenter),
+      presenter: showcasePresenter,
     );
   }
 }
