@@ -1,0 +1,8 @@
+[
+  {
+    "origin": ["*"],
+    "method": ["GET", "POST", "PUT", "DELETE"],
+    "maxAge": 3600,
+    "headers": ["Content-Type", "Authorization"]
+  }
+]

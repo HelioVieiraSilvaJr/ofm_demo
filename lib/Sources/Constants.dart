@@ -1,1 +1,1 @@
-const kBaseURL = "https://localhost";
+const kBaseURL = "http://localhost";

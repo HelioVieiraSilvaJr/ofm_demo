@@ -1,4 +1,4 @@
-import 'package:ofm_demo/Commons/Models/SectionModel.dart';
+import 'SectionModel.dart';
 
 class ShowcaseModel {
   final int? resultsCount;

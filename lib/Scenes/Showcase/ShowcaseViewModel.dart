@@ -28,7 +28,7 @@ class ShowcaseViewModel {
 
     final cacheKey = 'showcase_$_path';
     final showcase = ShowcaseModel.initFromMap(data: result.bodyResponse);
-    CacheManager.instance.set(cacheKey, showcase);
+    // CacheManager.instance.set(cacheKey, showcase);
     _showcase = showcase;
     print('==> ShowcaseViewModel.fetch: $_showcase');
     shouldUpdateUI!();

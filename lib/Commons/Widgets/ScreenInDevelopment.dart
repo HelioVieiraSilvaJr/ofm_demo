@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ofm_demo/Resources/DSColors.dart';
+import '../../Resources/DSColors.dart';
 
 class ScreenInDevelopment extends StatelessWidget {
   const ScreenInDevelopment({super.key});

@@ -1,4 +1,4 @@
-import 'package:ofm_demo/Commons/Models/ItemModel.dart';
+import 'ItemModel.dart';
 
 class SectionModel {
   final SectionType type;
