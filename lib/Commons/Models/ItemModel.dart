@@ -2,13 +2,13 @@ class ItemModel {
   final String imageUrl;
   final String? title;
   final String? text;
-  final String deeplink;
+  final String link;
 
   ItemModel({
     required this.imageUrl,
     this.title,
     this.text,
-    required this.deeplink,
+    required this.link,
   });
 
   factory ItemModel.initFromMap({required Map<String, dynamic> data}) {
@@ -16,7 +16,7 @@ class ItemModel {
       imageUrl: data['imageUrl'] ?? '',
       title: data['title'],
       text: data['text'],
-      deeplink: data['deeplink'] ?? '',
+      link: data['link'] ?? '',
     );
     return model;
   }
@@ -26,12 +26,12 @@ class ItemModel {
       'imageUrl': imageUrl,
       'title': title,
       'text': text,
-      'deeplink': deeplink,
+      'link': link,
     };
   }
 
   @override
   String toString() {
-    return 'ItemModel(imageUrl: $imageUrl, title: $title, text: $text, deeplink: $deeplink)';
+    return 'ItemModel(imageUrl: $imageUrl, title: $title, text: $text, link: $link)';
   }
 }

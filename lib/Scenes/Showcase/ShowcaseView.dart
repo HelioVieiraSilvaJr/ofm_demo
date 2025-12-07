@@ -3,6 +3,7 @@ import 'package:ofm_demo/Commons/Models/SectionModel.dart';
 import 'package:ofm_demo/Scenes/Showcase/ShowcasePresenter.dart';
 import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseBubbleWidget.dart';
 import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseContentMarkdown.dart';
+import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseDoubleWideImages.dart';
 import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcasePageBigImageWidget.dart';
 import 'package:ofm_demo/Sources/Base/BaseScreen.dart';
 import 'package:rx_notifier/rx_notifier.dart';
@@ -35,6 +36,9 @@ class _ShowcaseViewState extends State<ShowcaseView> {
               switch (section.type) {
                 case SectionType.bigImage:
                   return ShowcasePageBigImageWidget(
+                      section: section, onTap: presenter.onItemClicked);
+                case SectionType.doubleWideImages:
+                  return ShowcaseDoubleWideImages(
                       section: section, onTap: presenter.onItemClicked);
                 case SectionType.bubbles:
                   return ShowcaseBubbleWidget(
