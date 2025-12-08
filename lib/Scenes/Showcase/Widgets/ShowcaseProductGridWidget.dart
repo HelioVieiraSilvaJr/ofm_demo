@@ -58,26 +58,27 @@ class ShowcaseProductGridWidget extends StatelessWidget {
                     ),
                   ),
                   // 2) Tag "Frete grátis" em cima da imagem, alinhado embaixo
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                      ),
-                      child: const Text(
-                        '3x por 99.95',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
+                  if (item.tag != null)
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                        ),
+                        child: Text(
+                          item.tag ?? '',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
-                  ),
                 ],
               ),
             ),
@@ -99,15 +100,34 @@ class ShowcaseProductGridWidget extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  // 4) Preço
-                  Text(
-                    item.text ?? 'R\$ 0,00',
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.green,
+                  // 4) Preço promocional e preço original
+                  Row(children: [
+                    if (item.pricePromotional != null)
+                      Row(
+                        children: [
+                          Text(
+                            item.pricePromotional!,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                        ],
+                      ),
+                    Text(
+                      item.price ?? 'R\$ 0,00',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        decoration: item.pricePromotional != null
+                            ? TextDecoration.lineThrough
+                            : TextDecoration.none,
+                      ),
                     ),
-                  ),
+                  ]),
                 ],
               ),
             ),

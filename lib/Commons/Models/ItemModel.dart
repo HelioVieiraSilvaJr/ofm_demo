@@ -6,6 +6,9 @@ class ItemModel {
   final String? text;
   final String link;
   final ActionType action;
+  final String? tag;
+  final String? price;
+  final String? pricePromotional;
 
   ItemModel({
     required this.imageUrl,
@@ -13,6 +16,9 @@ class ItemModel {
     this.text,
     required this.link,
     required this.action,
+    this.tag,
+    this.price,
+    this.pricePromotional,
   });
 
   factory ItemModel.initFromMap({required Map<String, dynamic> data}) {
@@ -22,6 +28,9 @@ class ItemModel {
       text: data['text'],
       link: data['link'] ?? '',
       action: ActionTypeExtension.unwrapped(data['action']),
+      tag: data['tag'],
+      price: data['price'],
+      pricePromotional: data['pricePromotional'],
     );
     return model;
   }
@@ -33,12 +42,14 @@ class ItemModel {
       'text': text,
       'link': link,
       'action': action,
+      'tag': tag,
+      'price': price,
+      'pricePromotional': pricePromotional,
     };
   }
 
   @override
   String toString() {
-    return 'ItemModel(imageUrl: $imageUrl, title: $title, text: $text, link: $link, action: $action)';
+    return 'ItemModel(imageUrl: $imageUrl, title: $title, text: $text, link: $link, action: $action, tag: $tag, price: $price, pricePromotional: $pricePromotional)';
   }
 }
-
