@@ -30,7 +30,14 @@ class ShowcasePresenter extends BasePresenter {
   onItemClicked(ItemModel item) {
     switch (item.action) {
       case ActionType.showcase:
-        coordinator?.showShowcase(item.link, item.title);
+        if (item.link != null) {
+          coordinator?.goToShowcase(item.link!, item.title);
+        }
+        break;
+      case ActionType.productDetail:
+        if (item.link != null) {
+          coordinator?.goToProductDetail(item.link!, item.title);
+        }
         break;
       case ActionType.openExternalLink:
         coordinator?.openLink(item.link);

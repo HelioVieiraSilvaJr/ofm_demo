@@ -13,10 +13,10 @@ class SectionModel {
     required this.items,
   });
 
-  factory SectionModel.initFromMap({required Map<String, dynamic> data}) {
+  factory SectionModel.fromJson(Map<String, dynamic> data) {
     List<dynamic> itemsList = data['items'] ?? [];
     List<ItemModel> items =
-        itemsList.map((e) => ItemModel.initFromMap(data: e)).toList();
+        itemsList.map((item) => ItemModel.fromJson(item)).toList();
 
     final model = SectionModel(
       type: SectionTypeExtension.unwrapped(data['type']),
@@ -26,10 +26,10 @@ class SectionModel {
     return model;
   }
 
-  toJSON() {
+  toJson() {
     return {
       'type': type.rawValue,
-      'items': items.map((e) => e.toJSON()).toList(),
+      'items': items.map((e) => e.toJson()).toList(),
     };
   }
 

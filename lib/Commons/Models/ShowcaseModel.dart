@@ -14,7 +14,7 @@ class ShowcaseModel {
   factory ShowcaseModel.initFromMap({required Map<String, dynamic> data}) {
     List<dynamic> itemsList = data['sections'] ?? [];
     List<SectionModel> sections =
-        itemsList.map((e) => SectionModel.initFromMap(data: e)).toList();
+        itemsList.map((e) => SectionModel.fromJson(e)).toList();
 
     final model = ShowcaseModel(
       resultsCount: data['resultsCount'],
@@ -28,7 +28,7 @@ class ShowcaseModel {
     return {
       'resultsCount': resultsCount,
       'description': description,
-      'sections': sections.map((e) => e.toJSON()).toList(),
+      'sections': sections.map((e) => e.toJson()).toList(),
     };
   }
 

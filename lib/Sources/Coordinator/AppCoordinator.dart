@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Scenes/Home/HomeView.dart';
+import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailPresenter.dart';
+import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailView.dart';
+import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailViewModel.dart';
 import 'package:ofm_demo/Scenes/Showcase/ShowcasePresenter.dart';
 import 'package:ofm_demo/Scenes/Showcase/ShowcaseView.dart';
 
@@ -38,7 +41,7 @@ class AppCoordinator implements Coordinator {
   }
 
   // Métodos de navegação específicos
-  void showShowcase(String path, String? title) {
+  void goToShowcase(String path, String? title) {
     final appbar = AppBar(
       title: Text(
         title ?? '',
@@ -51,6 +54,24 @@ class AppCoordinator implements Coordinator {
     navigatorKey.currentState?.push(
       MaterialPageRoute(
         builder: (_) => ShowcaseView(presenter: presenter),
+      ),
+    );
+  }
+
+  void goToProductDetail(String path, String? title) {
+    final appbar = AppBar(
+      title: Text(
+        title ?? '',
+        style: TextStyle(fontSize: 18),
+      ),
+    );
+    final viewModel = ProductDetailViewModel(path: path);
+    final presenter = ProductDetailPresenter(
+        viewModel: viewModel, appBar: appbar, coordinator: this);
+
+    navigatorKey.currentState?.push(
+      MaterialPageRoute(
+        builder: (_) => ProductDetailView(presenter: presenter),
       ),
     );
   }

@@ -4,7 +4,7 @@ class ItemModel {
   final String imageUrl;
   final String? title;
   final String? text;
-  final String link;
+  final String? link;
   final ActionType action;
   final String? tag;
   final String? price;
@@ -14,14 +14,14 @@ class ItemModel {
     required this.imageUrl,
     this.title,
     this.text,
-    required this.link,
+    this.link,
     required this.action,
     this.tag,
     this.price,
     this.pricePromotional,
   });
 
-  factory ItemModel.initFromMap({required Map<String, dynamic> data}) {
+  factory ItemModel.fromJson(Map<String, dynamic> data) {
     final model = ItemModel(
       imageUrl: data['imageUrl'] ?? '',
       title: data['title'],
@@ -35,7 +35,7 @@ class ItemModel {
     return model;
   }
 
-  toJSON() {
+  toJson() {
     return {
       'imageUrl': imageUrl,
       'title': title,
