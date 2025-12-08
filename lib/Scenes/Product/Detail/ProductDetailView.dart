@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailPresenter.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/Widgets/ProductDetailListImagesWidget.dart';
+import 'package:ofm_demo/Sources/Base/BaseScreen.dart';
+import 'package:rx_notifier/rx_notifier.dart';
 
 class ProductDetailView extends StatefulWidget {
   final ProductDetailPresenter presenter;
@@ -23,20 +25,21 @@ class _ProductDetailViewState extends State<ProductDetailView> {
 
   @override
   Widget build(BuildContext context) {
-    presenter.viewModel.selectedSKU.addListener(() {
-      // Handle SKU selection changes
-      print('SKU changed: ${presenter.viewModel.selectedSKU.value}');
-    });
-
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          ProductDetailListImagesWidget(
-              images: presenter.viewModel.selectedSKU.value?.images ?? []),
-          // Add more widgets below as needed
-        ],
+    return BaseView(
+        body: SingleChildScrollView(
+          child: RxBuilder(builder: (context) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                ProductDetailListImagesWidget(
+                    images:
+                        presenter.viewModel.selectedSKU.value?.images ?? []),
+                // Add more widgets below as needed
+              ],
+            );
+          }
       ),
-    );
+        ),
+        presenter: presenter);
   }
 }

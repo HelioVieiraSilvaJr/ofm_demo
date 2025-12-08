@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/Model/ProductModel.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailViewModel.dart';
+import 'package:ofm_demo/Sources/Base/BasePresenter.dart';
 import 'package:ofm_demo/Sources/Coordinator/AppCoordinator.dart';
 
-class ProductDetailPresenter {
+class ProductDetailPresenter extends BasePresenter {
   // MARK: - Properties
   final ProductDetailViewModel viewModel;
   final AppBar appBar;

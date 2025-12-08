@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/Model/ProductModel.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
+import 'package:http/http.dart' as http;
 
 class ProductDetailListImagesWidget extends StatefulWidget {
   final List<SKUImage> images;
@@ -18,35 +19,63 @@ class _ProductDetailListImagesWidgetState
     extends State<ProductDetailListImagesWidget> {
   final Map<int, VideoPlayerController> _controllers = {};
   int _currentPage = 0;
+  final Set<int> _failedControllers = {};
 
   @override
   void initState() {
     super.initState();
-    _initVideoControllers();
+    // Inicialização de vídeos será feita de forma preguiçosa quando ficarem visíveis
   }
 
-  void _initVideoControllers() async {
-    for (int i = 0; i < widget.images.length; i++) {
-      final img = widget.images[i];
-      if (img.type.toLowerCase() == 'video') {
-        print(
-            '==> Initializing video controller for video at index $i: ${img.url}');
-        // ignore: deprecated_member_use
-        final controller = VideoPlayerController.network(img.url);
-        _controllers[i] = controller;
-        try {
+  Future<void> _ensureControllerInitialized(int index) async {
+    if (_controllers.containsKey(index) || _failedControllers.contains(index))
+      return;
+    final img = widget.images[index];
+    if (img.type.toLowerCase() != 'video') return;
+
+    // create controller for original url
+    // ignore: deprecated_member_use
+    VideoPlayerController controller = VideoPlayerController.network(img.url);
+    _controllers[index] = controller;
+    try {
+      debugPrint(
+          'Initializing video controller for index=$index url=${img.url}');
+      await controller.initialize();
+      controller.setLooping(true);
+      if (!mounted) return;
+      setState(() {});
+      return;
+    } catch (e, st) {
+      debugPrint('Initial initialize failed for index=$index: $e\n$st');
+      // try to resolve redirect and retry
+      try {
+        debugPrint('Attempting to resolve redirect for index=$index');
+        final resp = await http.get(Uri.parse(img.url));
+        final finalUri = resp.request?.url;
+        if (finalUri != null && finalUri.toString() != img.url) {
+          debugPrint('Resolved final url for index=$index -> $finalUri');
+          try {
+            await controller.dispose();
+          } catch (_) {}
+          // ignore: deprecated_member_use
+          controller = VideoPlayerController.network(finalUri.toString());
+          _controllers[index] = controller;
           await controller.initialize();
           controller.setLooping(true);
-        } catch (e) {
-          // ignore init errors for now
+          if (!mounted) return;
+          setState(() {});
+          return;
         }
-        if (!mounted) return;
-        setState(() {});
+      } catch (e2, st2) {
+        debugPrint('Redirect resolution failed for index=$index: $e2\n$st2');
       }
-    }
 
-    // If the initial page is a video, try to play it
-    _playIfVideo(_currentPage);
+      debugPrint('Failed to initialize video controller index=$index: $e\n$st');
+      _failedControllers.add(index);
+      _controllers.remove(index);
+      if (!mounted) return;
+      setState(() {});
+    }
   }
 
   void _playIfVideo(int index) {
@@ -73,51 +102,93 @@ class _ProductDetailListImagesWidgetState
     return Stack(
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.width * 1.2,
           width: double.infinity,
           child: PageView.builder(
             itemCount: widget.images.length,
             onPageChanged: (index) {
               setState(() => _currentPage = index);
               _playIfVideo(index);
+              print('==> Page changed to $index');
             },
             itemBuilder: (context, index) {
               final img = widget.images[index];
+              print(
+                  '==> Building page for image at index $index: ${img.url} (type: ${img.type})');
               if (img.type.toLowerCase() == 'video') {
                 final controller = _controllers[index];
                 return VisibilityDetector(
                   key: Key('video-$index'),
                   onVisibilityChanged: (info) {
                     final visible = info.visibleFraction > 0.5;
-                    if (controller != null && controller.value.isInitialized) {
+                    final c = _controllers[index];
+                    if (c == null && visible) {
+                      // initialize lazily when becomes visible
+                      _ensureControllerInitialized(index).then((_) {
+                        final c2 = _controllers[index];
+                        if (c2 != null && c2.value.isInitialized) {
+                          debugPrint(
+                              '==> Playing video at index $index after init');
+                          c2.play();
+                        }
+                      });
+                      return;
+                    }
+
+                    if (c != null && c.value.isInitialized) {
                       if (visible) {
-                        print('==> Playing video at index $index');
-                        controller.play();
+                        debugPrint('==> Playing video at index $index');
+                        c.play();
                       } else {
-                        print('==> Pausing video at index $index');
-                        controller.pause();
+                        debugPrint('==> Pausing video at index $index');
+                        c.pause();
                       }
                     }
                   },
-                  child: controller == null || !controller.value.isInitialized
-                      ? Container(
+                  child: (() {
+                    final c = _controllers[index];
+                    if (c == null) {
+                      if (_failedControllers.contains(index)) {
+                        return Container(
                           color: Colors.black,
                           child: const Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                        )
-                      : SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: FittedBox(
-                            fit: BoxFit.cover,
-                            clipBehavior: Clip.hardEdge,
-                            child: SizedBox(
-                              width: controller.value.size.width,
-                              height: controller.value.size.height,
-                              child: VideoPlayer(controller),
+                            child: Icon(
+                              Icons.error,
+                              color: Colors.white,
                             ),
                           ),
+                        );
+                      }
+                      return Container(
+                        color: Colors.black,
+                        child: const Center(
+                          child: CircularProgressIndicator(),
                         ),
+                      );
+                    }
+
+                    if (!c.value.isInitialized) {
+                      return Container(
+                        color: Colors.black,
+                        child: const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    }
+
+                    return SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: FittedBox(
+                        fit: BoxFit.cover,
+                        clipBehavior: Clip.hardEdge,
+                        child: SizedBox(
+                          width: c.value.size.width,
+                          height: c.value.size.height,
+                          child: VideoPlayer(c),
+                        ),
+                      ),
+                    );
+                  })(),
                 );
               }
 
