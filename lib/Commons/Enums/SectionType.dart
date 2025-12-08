@@ -7,6 +7,7 @@ enum SectionType {
   bubbles,
   contentMarkdown,
   productList,
+  productListHorizontal,
   none;
 }
 
@@ -29,6 +30,8 @@ extension SectionTypeExtension on SectionType {
         return 'contentMarkdown';
       case SectionType.productList:
         return 'productList';
+      case SectionType.productListHorizontal:
+        return 'productListHorizontal';
       case SectionType.none:
         return 'none';
     }
