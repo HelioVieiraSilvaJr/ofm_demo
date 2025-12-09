@@ -9,71 +9,112 @@ class ProductDetailSelectedSizeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sizes = presenter.viewModel.selectedSKU.value?.sizes ?? [];
+    final selectedSize = sizes.where((s) => s.selected).firstOrNull;
     const height = 48.0;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16),
-      child: SizedBox(
-        height: height,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: sizes.length,
-          itemBuilder: (context, index) {
-            final size = sizes[index];
-            final isSelected = size.selected;
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: height,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: sizes.length,
+              itemBuilder: (context, index) {
+                final size = sizes[index];
+                final isSelected = size.selected;
 
-            final child = Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              alignment: Alignment.center,
-              child: Text(
-                size.size,
-                style: TextStyle(
-                  color: size.available ? Colors.black : Colors.grey,
-                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                ),
-              ),
-            );
-
-            Widget borderChild;
-            if (size.available) {
-              borderChild = Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: isSelected ? Colors.black : Colors.grey,
-                    width: 1.5,
-                    style: BorderStyle.solid,
+                final child = Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  alignment: Alignment.center,
+                  child: Text(
+                    size.size,
+                    style: TextStyle(
+                      color: size.available ? Colors.black : Colors.grey,
+                      fontWeight:
+                          isSelected ? FontWeight.bold : FontWeight.normal,
+                    ),
                   ),
-                  color: isSelected ? Colors.black12 : Colors.white,
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: child,
-              );
-            } else {
-              borderChild = Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: CustomPaint(
-                  painter: _DottedBorderPainter(radius: 6, color: Colors.grey),
-                  child: child,
-                ),
-              );
-            }
+                );
 
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 6.0),
-              child: GestureDetector(
-                onTap: size.available
-                    ? () {
-                        presenter.handlerSetSize(size);
-                      }
-                    : null,
-                child: borderChild,
+                Widget borderChild;
+                if (size.available) {
+                  borderChild = Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: isSelected ? Colors.black : Colors.grey,
+                        width: 1.5,
+                        style: BorderStyle.solid,
+                      ),
+                      color: isSelected ? Colors.black12 : Colors.white,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: child,
+                  );
+                } else {
+                  borderChild = Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: CustomPaint(
+                      painter:
+                          _DottedBorderPainter(radius: 6, color: Colors.grey),
+                      child: child,
+                    ),
+                  );
+                }
+
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                  child: GestureDetector(
+                    onTap: size.available
+                        ? () {
+                            presenter.handlerSetSize(size);
+                          }
+                        : null,
+                    child: borderChild,
+                  ),
+                );
+              },
+            ),
+          ),
+          if (selectedSize?.senseOfUrgency != null &&
+              selectedSize!.senseOfUrgency!.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(top: 12.0, left: 6.0),
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(
+                      Icons.local_fire_department,
+                      color: Colors.white,
+                      size: 16,
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      selectedSize.senseOfUrgency!,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            );
-          },
-        ),
+            ),
+        ],
       ),
     );
   }
