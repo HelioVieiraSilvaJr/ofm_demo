@@ -41,28 +41,28 @@ class _ShowcaseViewState extends State<ShowcaseView> {
               switch (section.type) {
                 case SectionType.bigImage:
                   return ShowcasePageBigImageWidget(
-                      section: section, onTap: presenter.onItemClicked);
+                      section: section, onTap: presenter.handlerClickItem);
                 case SectionType.doubleWideImages:
                   return ShowcaseDoubleWideImages(
-                      section: section, onTap: presenter.onItemClicked);
+                      section: section, onTap: presenter.handlerClickItem);
                 case SectionType.wideImage:
                   return ShowcaseWideImage(
-                      section: section, onTap: presenter.onItemClicked);
+                      section: section, onTap: presenter.handlerClickItem);
                 case SectionType.categories:
                   return ShowcaseCategoriesWidget(
-                      section: section, onTap: presenter.onItemClicked);
+                      section: section, onTap: presenter.handlerClickItem);
                 case SectionType.bubbles:
                   return ShowcaseBubbleWidget(
-                      section: section, onTap: presenter.onItemClicked);
+                      section: section, onTap: presenter.handlerClickItem);
                 case SectionType.productList:
                   return ShowcaseProductGridWidget(
-                      section: section, onTap: presenter.onItemClicked);
+                      section: section, onTap: presenter.handlerClickItem);
                 case SectionType.productListHorizontal:
                   return ShowcaseProductListHorizontalWidget(
-                      section: section, onTap: presenter.onItemClicked);
+                      section: section, onTap: presenter.handlerClickItem);
                 case SectionType.contentMarkdown:
                   return ShowcaseContentMarkdown(
-                      section: section, openLink: presenter.openLink);
+                      section: section, openLink: presenter.handlerOpenLink);
                 default:
                   return SizedBox.shrink();
               }

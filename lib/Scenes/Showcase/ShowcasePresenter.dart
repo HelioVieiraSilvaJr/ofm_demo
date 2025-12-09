@@ -27,7 +27,7 @@ class ShowcasePresenter extends BasePresenter {
   }
 
   // MARK: Actions
-  onItemClicked(ItemModel item) {
+  handlerClickItem(ItemModel item) {
     switch (item.action) {
       case ActionType.showcase:
         if (item.link != null) {
@@ -50,7 +50,7 @@ class ShowcasePresenter extends BasePresenter {
     }
   }
 
-  openLink(String? url) {
+  handlerOpenLink(String? url) {
     coordinator?.openLink(url);
   }
 

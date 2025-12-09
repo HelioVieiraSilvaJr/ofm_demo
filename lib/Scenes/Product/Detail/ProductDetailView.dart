@@ -1,7 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:ofm_demo/Commons/Enums/SectionType.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailPresenter.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/Widgets/ProductDetailListImagesWidget.dart';
+import 'package:ofm_demo/Scenes/Product/Detail/Widgets/ProductDetailSelectedSizeWidget.dart';
+import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseBubbleWidget.dart';
+import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseContentMarkdown.dart';
+import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseDoubleWideImages.dart';
+import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseProductListHorizontalWidget.dart';
+import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseWideImage.dart';
 import 'package:ofm_demo/Sources/Base/BaseScreen.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
@@ -35,7 +42,37 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                     images:
                         presenter.viewModel.selectedSKU.value?.images ?? []),
                 _buildDescription(),
-                _buildSelectSKU()
+                _buildSelectSKU(),
+                ProductDetailSelectedSizeWidget(presenter: presenter),
+                Column(
+                    children:
+                        (presenter.viewModel.productModel.value?.sections ?? [])
+                            .map((section) {
+                  switch (section.type) {
+                    case SectionType.doubleWideImages:
+                      return ShowcaseDoubleWideImages(
+                          section: section,
+                          onTap: presenter.handlerClickSectionItem);
+                    case SectionType.wideImage:
+                      return ShowcaseWideImage(
+                          section: section,
+                          onTap: presenter.handlerClickSectionItem);
+                    case SectionType.bubbles:
+                      return ShowcaseBubbleWidget(
+                          section: section,
+                          onTap: presenter.handlerClickSectionItem);
+                    case SectionType.productListHorizontal:
+                      return ShowcaseProductListHorizontalWidget(
+                          section: section,
+                          onTap: presenter.handlerClickSectionItem);
+                    case SectionType.contentMarkdown:
+                      return ShowcaseContentMarkdown(
+                          section: section,
+                          openLink: presenter.handlerOpenLink);
+                    default:
+                      return SizedBox.shrink();
+                  }
+                }).toList()),
               ],
             );
           }),
