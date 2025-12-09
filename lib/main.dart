@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:ofm_demo/Commons/Widgets/CustomCircularProgressIndicator.dart';
 import 'package:ofm_demo/Resources/DSColors.dart';
 import 'package:ofm_demo/Sources/Coordinator/AppCoordinator.dart';
 import 'package:ofm_demo/firebase_options.dart';
@@ -56,9 +57,9 @@ class _MyAppState extends State<MyApp> {
       title: "OFM App",
       theme: getThemeData(),
       navigatorKey: navigatorKey,
-      home: const Scaffold(
+      home: Scaffold(
         body: Center(
-          child: CircularProgressIndicator(),
+          child: CustomCircularProgressIndicator(),
         ),
       ),
     );

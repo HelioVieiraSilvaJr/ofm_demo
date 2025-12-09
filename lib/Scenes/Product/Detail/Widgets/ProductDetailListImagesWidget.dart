@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:ofm_demo/Commons/Widgets/CustomCircularProgressIndicator.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/Model/ProductModel.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -157,8 +158,8 @@ class _ProductDetailListImagesWidgetState
                       }
                       return Container(
                         color: Colors.black,
-                        child: const Center(
-                          child: CircularProgressIndicator(),
+                        child: Center(
+                          child: CustomCircularProgressIndicator(),
                         ),
                       );
                     }
@@ -166,8 +167,8 @@ class _ProductDetailListImagesWidgetState
                     if (!c.value.isInitialized) {
                       return Container(
                         color: Colors.black,
-                        child: const Center(
-                          child: CircularProgressIndicator(),
+                        child: Center(
+                          child: CustomCircularProgressIndicator(),
                         ),
                       );
                     }

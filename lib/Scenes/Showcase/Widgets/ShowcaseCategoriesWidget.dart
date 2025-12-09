@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Commons/Models/ItemModel.dart';
 import 'package:ofm_demo/Commons/Models/SectionModel.dart';
+import 'package:ofm_demo/Commons/Widgets/CustomCircularProgressIndicator.dart';
 
 class ShowcaseCategoriesWidget extends StatelessWidget {
   final SectionModel section;
@@ -50,7 +51,7 @@ class ShowcaseCategoriesWidget extends StatelessWidget {
                             imageUrl:
                                 item1?.imageUrl ?? 'https://placehold.co/150',
                             placeholder: (context, url) =>
-                                CircularProgressIndicator(),
+                                CustomCircularProgressIndicator(),
                             errorWidget: (context, url, error) =>
                                 Icon(Icons.error),
                             fit: BoxFit.cover,
@@ -91,7 +92,7 @@ class ShowcaseCategoriesWidget extends StatelessWidget {
                             imageUrl:
                                 item2?.imageUrl ?? 'https://placehold.co/150',
                             placeholder: (context, url) =>
-                                CircularProgressIndicator(),
+                                CustomCircularProgressIndicator(),
                             errorWidget: (context, url, error) =>
                                 Icon(Icons.error),
                             fit: BoxFit.cover,
@@ -137,7 +138,7 @@ class ShowcaseCategoriesWidget extends StatelessWidget {
                             imageUrl:
                                 item3?.imageUrl ?? 'https://placehold.co/150',
                             placeholder: (context, url) =>
-                                CircularProgressIndicator(),
+                                CustomCircularProgressIndicator(),
                             errorWidget: (context, url, error) =>
                                 Icon(Icons.error),
                             fit: BoxFit.cover,
@@ -178,7 +179,7 @@ class ShowcaseCategoriesWidget extends StatelessWidget {
                             imageUrl:
                                 item4?.imageUrl ?? 'https://placehold.co/150',
                             placeholder: (context, url) =>
-                                CircularProgressIndicator(),
+                                CustomCircularProgressIndicator(),
                             errorWidget: (context, url, error) =>
                                 Icon(Icons.error),
                             fit: BoxFit.cover,

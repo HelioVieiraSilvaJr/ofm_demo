@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:ofm_demo/Commons/Widgets/CustomCircularProgressIndicator.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailPresenter.dart';
 
 class ProductDetailSelectedSKU extends StatelessWidget {
@@ -50,8 +51,8 @@ class ProductDetailSelectedSKU extends StatelessWidget {
                       width: size,
                       height: size,
                       fit: BoxFit.cover,
-                      placeholder: (context, url) => const Center(
-                        child: CircularProgressIndicator(),
+                      placeholder: (context, url) => Center(
+                        child: CustomCircularProgressIndicator(),
                       ),
                       errorWidget: (context, url, error) =>
                           const Icon(Icons.error),
