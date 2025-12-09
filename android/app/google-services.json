@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "854758876544",
+    "project_id": "ofm-app-nl",
+    "storage_bucket": "ofm-app-nl.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854758876544:android:c195af43c0389c8b878d65",
+        "android_client_info": {
+          "package_name": "br.com.htech.ofmAppDemo.ofm_demo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHk_ly1sX5sonhz9KrVIc1W__mpe0U9a4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

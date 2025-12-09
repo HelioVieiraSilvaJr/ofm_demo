@@ -5,6 +5,7 @@ import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailView.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailViewModel.dart';
 import 'package:ofm_demo/Scenes/Showcase/ShowcasePresenter.dart';
 import 'package:ofm_demo/Scenes/Showcase/ShowcaseView.dart';
+import 'package:ofm_demo/Scenes/Splash/SplashView.dart';
 
 /// Interface base para todos os coordinators
 abstract class Coordinator {
@@ -28,6 +29,18 @@ class AppCoordinator implements Coordinator {
 
   @override
   void start() {
+    // Inicia com a SplashView
+    navigatorKey.currentState?.pushReplacement(
+      MaterialPageRoute(builder: (_) => const SplashView()),
+    );
+
+    // Após 1 segundo, navega para a HomeView
+    Future.delayed(const Duration(seconds: 1), () {
+      goToHome();
+    });
+  }
+
+  void goToHome() {
     navigatorKey.currentState?.pushReplacement(
       MaterialPageRoute(builder: (_) => Homeview(coordinator: this)),
     );

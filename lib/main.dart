@@ -1,6 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Resources/DSColors.dart';
 import 'package:ofm_demo/Sources/Coordinator/AppCoordinator.dart';
+import 'package:ofm_demo/firebase_options.dart';
 
 ThemeData getThemeData() {
   return ThemeData(
@@ -15,7 +17,13 @@ ThemeData getThemeData() {
       visualDensity: VisualDensity.adaptivePlatformDensity);
 }
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
