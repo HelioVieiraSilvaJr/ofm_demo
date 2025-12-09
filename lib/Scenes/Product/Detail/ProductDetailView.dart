@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Commons/Enums/SectionType.dart';
+import 'package:ofm_demo/Commons/Widgets/SectionAccordeonWidget.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailPresenter.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/Widgets/ProductDetailDescription.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/Widgets/ProductDetailHighlightsWidget.dart';
@@ -77,7 +78,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
         case SectionType.highlights:
           return ProductDetailHighlightsWidget(section: section);
         case SectionType.accordion:
-          return ProductDetailHighlightsWidget(section: section);
+          return SectionAccordeonWidget(section: section);
         default:
           return SizedBox.shrink();
       }

@@ -13,25 +13,41 @@ class ShowcaseProductListHorizontalWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      child: SizedBox(
-        height: 250,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: section.items.length,
-          itemBuilder: (context, index) {
-            final item = section.items[index];
-            return Padding(
-              padding: EdgeInsets.only(
-                left: index == 0 ? 16 : 4,
-                right: index == section.items.length - 1 ? 16 : 4,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (section.title != null && section.title!.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
+              child: Text(
+                section.title!,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              child: SizedBox(
-                width: 160,
-                child: ProductCardWidget(item: item, onTap: onTap),
-              ),
-            );
-          },
-        ),
+            ),
+          SizedBox(
+            height: 250,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: section.items.length,
+              itemBuilder: (context, index) {
+                final item = section.items[index];
+                return Padding(
+                  padding: EdgeInsets.only(
+                    left: index == 0 ? 16 : 4,
+                    right: index == section.items.length - 1 ? 16 : 4,
+                  ),
+                  child: SizedBox(
+                    width: 160,
+                    child: ProductCardWidget(item: item, onTap: onTap),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
