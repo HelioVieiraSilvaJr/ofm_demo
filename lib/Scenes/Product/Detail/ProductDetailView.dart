@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ofm_demo/Commons/Enums/SectionType.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailPresenter.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/Widgets/ProductDetailDescription.dart';
+import 'package:ofm_demo/Scenes/Product/Detail/Widgets/ProductDetailHighlightsWidget.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/Widgets/ProductDetailListImagesWidget.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/Widgets/ProductDetailSelectedSKU.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/Widgets/ProductDetailSelectedSizeWidget.dart';
@@ -45,39 +46,41 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                 ProductDetailDescription(presenter: presenter),
                 ProductDetailSelectedSKU(presenter: presenter),
                 ProductDetailSelectedSizeWidget(presenter: presenter),
-                Column(
-                    children:
-                        (presenter.viewModel.productModel.value?.sections ?? [])
-                            .map((section) {
-                  switch (section.type) {
-                    case SectionType.doubleWideImages:
-                      return ShowcaseDoubleWideImages(
-                          section: section,
-                          onTap: presenter.handlerClickSectionItem);
-                    case SectionType.wideImage:
-                      return ShowcaseWideImage(
-                          section: section,
-                          onTap: presenter.handlerClickSectionItem);
-                    case SectionType.bubbles:
-                      return ShowcaseBubbleWidget(
-                          section: section,
-                          onTap: presenter.handlerClickSectionItem);
-                    case SectionType.productListHorizontal:
-                      return ShowcaseProductListHorizontalWidget(
-                          section: section,
-                          onTap: presenter.handlerClickSectionItem);
-                    case SectionType.contentMarkdown:
-                      return ShowcaseContentMarkdown(
-                          section: section,
-                          openLink: presenter.handlerOpenLink);
-                    default:
-                      return SizedBox.shrink();
-                  }
-                }).toList()),
+                _buildSections()
               ],
             );
           }),
         ),
         presenter: presenter);
+  }
+
+  Widget _buildSections() {
+    return Column(
+        children: (presenter.viewModel.productModel.value?.sections ?? [])
+            .map((section) {
+      switch (section.type) {
+        case SectionType.doubleWideImages:
+          return ShowcaseDoubleWideImages(
+              section: section, onTap: presenter.handlerClickSectionItem);
+        case SectionType.wideImage:
+          return ShowcaseWideImage(
+              section: section, onTap: presenter.handlerClickSectionItem);
+        case SectionType.bubbles:
+          return ShowcaseBubbleWidget(
+              section: section, onTap: presenter.handlerClickSectionItem);
+        case SectionType.productListHorizontal:
+          return ShowcaseProductListHorizontalWidget(
+              section: section, onTap: presenter.handlerClickSectionItem);
+        case SectionType.contentMarkdown:
+          return ShowcaseContentMarkdown(
+              section: section, openLink: presenter.handlerOpenLink);
+        case SectionType.highlights:
+          return ProductDetailHighlightsWidget(section: section);
+        case SectionType.accordion:
+          return ProductDetailHighlightsWidget(section: section);
+        default:
+          return SizedBox.shrink();
+      }
+    }).toList());
   }
 }

@@ -8,6 +8,8 @@ enum SectionType {
   contentMarkdown,
   productList,
   productListHorizontal,
+  accordion,
+  highlights,
   none;
 }
 
@@ -32,6 +34,10 @@ extension SectionTypeExtension on SectionType {
         return 'productList';
       case SectionType.productListHorizontal:
         return 'productListHorizontal';
+      case SectionType.accordion:
+        return 'accordion';
+      case SectionType.highlights:
+        return 'highlights';
       case SectionType.none:
         return 'none';
     }
