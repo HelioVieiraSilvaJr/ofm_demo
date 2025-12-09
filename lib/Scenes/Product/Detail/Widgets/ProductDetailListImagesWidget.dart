@@ -109,14 +109,10 @@ class _ProductDetailListImagesWidgetState
             onPageChanged: (index) {
               setState(() => _currentPage = index);
               _playIfVideo(index);
-              print('==> Page changed to $index');
             },
             itemBuilder: (context, index) {
               final img = widget.images[index];
-              print(
-                  '==> Building page for image at index $index: ${img.url} (type: ${img.type})');
               if (img.type.toLowerCase() == 'video') {
-                final controller = _controllers[index];
                 return VisibilityDetector(
                   key: Key('video-$index'),
                   onVisibilityChanged: (info) {
