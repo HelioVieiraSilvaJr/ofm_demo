@@ -81,18 +81,21 @@ class ProductImage {
 class SizeModel {
   final String size;
   final bool available;
+  final String? senseOfUrgency;
   bool selected = false;
 
-  SizeModel({required this.size, required this.available});
+  SizeModel({required this.size, required this.available, this.senseOfUrgency});
 
   factory SizeModel.fromJson(Map<String, dynamic> json) => SizeModel(
         size: json['size'] as String? ?? '',
         available: json['available'] as bool? ?? false,
+        senseOfUrgency: json['senseOfUrgency'] as String?,
       );
 
   Map<String, dynamic> toJson() => {
         'size': size,
         'available': available,
+        'senseOfUrgency': senseOfUrgency,
       };
 }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Commons/Enums/SectionType.dart';
+import 'package:ofm_demo/Commons/Widgets/DSButtonWidget.dart';
 import 'package:ofm_demo/Commons/Widgets/SectionAccordeonWidget.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailPresenter.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/Widgets/ProductDetailDescription.dart';
@@ -47,6 +48,16 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                 ProductDetailDescription(presenter: presenter),
                 ProductDetailSelectedSKU(presenter: presenter),
                 ProductDetailSelectedSizeWidget(presenter: presenter),
+                DSButtonWidget(
+                  title: 'In winkelwagen',
+                  type: DSButtonType.primary,
+                  iconType: DSButtonIconType.cart,
+                ),
+                DSButtonWidget(
+                  title: 'Vind vergelijkbare items',
+                  type: DSButtonType.secondary,
+                  iconType: DSButtonIconType.ai,
+                ),
                 _buildSections()
               ],
             );

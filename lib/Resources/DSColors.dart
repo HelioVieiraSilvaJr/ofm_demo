@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class DSColors {
-  Color primaryColor = const Color(0xFF001F3F);
-  Color secondaryColor = const Color(0xFF003366);
-  Color accentColor = const Color(0xFFFFD700);
+  Color primaryColor = const Color.fromRGBO(1, 65, 107, 1.0);
+  Color secondaryColor = const Color.fromRGBO(194, 184, 171, 1.0);
+  Color accentColor = const Color.fromRGBO(231, 227, 222, 1.0);
   Color tint = Colors.black;
   Color backgroundLight = const Color.fromARGB(255, 171, 202, 245);
   Color appbarForeground = Colors.black;
