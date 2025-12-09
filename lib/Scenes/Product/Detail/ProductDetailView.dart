@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailPresenter.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/Widgets/ProductDetailListImagesWidget.dart';
@@ -33,7 +34,8 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                 ProductDetailListImagesWidget(
                     images:
                         presenter.viewModel.selectedSKU.value?.images ?? []),
-                _buildDescription()
+                _buildDescription(),
+                _buildSelectSKU()
               ],
             );
           }),
@@ -48,7 +50,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
     const fontSizeTag = 14.0;
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -109,6 +111,46 @@ class _ProductDetailViewState extends State<ProductDetailView> {
               ),
             ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildSelectSKU() {
+    final skus = presenter.viewModel.productModel.value?.productSKU ?? [];
+    const height = 80.0;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
+      child: SizedBox(
+        height: height,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: skus.length,
+          itemBuilder: (context, index) {
+            final sku = skus[index];
+            return GestureDetector(
+              onTap: () {
+                presenter.handlerSetSKU(sku);
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                child: ClipOval(
+                  child: CachedNetworkImage(
+                    imageUrl: sku.thumbSKU ?? '',
+                    width: 70,
+                    height: height,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

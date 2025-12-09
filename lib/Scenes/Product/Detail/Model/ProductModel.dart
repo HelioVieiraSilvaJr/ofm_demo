@@ -99,14 +99,14 @@ class SizeModel {
 class ProductSKU {
   final String sku;
   final String? name;
-  final String? tumbSKU;
+  final String? thumbSKU;
   final List<SKUImage> images;
   final List<SizeModel> sizes;
 
   ProductSKU({
     required this.sku,
     this.name,
-    this.tumbSKU,
+    this.thumbSKU,
     required this.images,
     required this.sizes,
   });
@@ -115,7 +115,7 @@ class ProductSKU {
     return ProductSKU(
       sku: json['sku'] as String? ?? '',
       name: json['name'] as String?,
-      tumbSKU: json['tumbSKU'] as String?,
+      thumbSKU: json['thumbSKU'] as String?,
       images: (json['images'] as List<dynamic>?)
               ?.map((e) => SKUImage.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -130,7 +130,7 @@ class ProductSKU {
   Map<String, dynamic> toJson() => {
         'sku': sku,
         if (name != null) 'name': name,
-        if (tumbSKU != null) 'skuImage': tumbSKU,
+        if (thumbSKU != null) 'skuImage': thumbSKU,
         'images': images.map((e) => e.toJson()).toList(),
         'sizes': sizes.map((e) => e.toJson()).toList(),
       };
