@@ -54,8 +54,16 @@ class BasePresenter {
     notificationError.show(context);
   }
 
+  setLoading(bool isOn) {
+    isLoadingList.value = isOn;
+  }
+
   showLoading(bool isOn) {
     isLoadingList.value = isOn;
+  }
+
+  bool isLoading() {
+    return isLoadingList.value;
   }
 
   // Setup

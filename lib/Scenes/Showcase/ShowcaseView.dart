@@ -9,7 +9,7 @@ import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcasePageBigImageWidget.dart
 import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseProductGridWidget.dart';
 import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseProductListHorizontalWidget.dart';
 import 'package:ofm_demo/Scenes/Showcase/Widgets/ShowcaseWideImage.dart';
-import 'package:ofm_demo/Sources/Base/BaseScreen.dart';
+import 'package:ofm_demo/Sources/Base/BaseView.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
 class ShowcaseView extends StatefulWidget {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ofm_demo/Scenes/Home/HomePresenter.dart';
 import 'package:ofm_demo/Scenes/Showcase/ShowcasePresenter.dart';
 import 'package:ofm_demo/Scenes/Showcase/ShowcaseView.dart';
-import 'package:ofm_demo/Sources/Base/BaseScreen.dart';
+import 'package:ofm_demo/Sources/Base/BaseView.dart';
 import 'package:ofm_demo/Sources/Coordinator/AppCoordinator.dart';
 
 class Homeview extends StatefulWidget {

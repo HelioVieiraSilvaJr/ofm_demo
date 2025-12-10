@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:ofm_demo/Sources/Constants.dart';
 
 class NetworkResponse {
-  final dynamic bodyResponse;
+  final Map<String, dynamic> bodyResponse;
   final int statusCode;
 
   NetworkResponse({

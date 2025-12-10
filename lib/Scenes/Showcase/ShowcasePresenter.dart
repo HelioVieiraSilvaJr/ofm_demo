@@ -16,6 +16,7 @@ class ShowcasePresenter extends BasePresenter {
 
   ShowcasePresenter({required String path, this.appBar}) {
     viewModel = ShowcaseViewModel(path);
+    setLoading(true);
     _bindEvents();
   }
 
@@ -23,6 +24,7 @@ class ShowcasePresenter extends BasePresenter {
   _bindEvents() {
     viewModel.shouldUpdateUI = () {
       this.sections.value = viewModel.sections;
+      setLoading(false);
     };
   }
 

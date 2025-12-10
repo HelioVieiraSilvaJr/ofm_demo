@@ -11,7 +11,7 @@ class ShowcaseModel {
     required this.sections,
   });
 
-  factory ShowcaseModel.initFromMap({required Map<String, dynamic> data}) {
+  factory ShowcaseModel.fromJson(Map<String, dynamic> data) {
     List<dynamic> itemsList = data['sections'] ?? [];
     List<SectionModel> sections =
         itemsList.map((e) => SectionModel.fromJson(e)).toList();

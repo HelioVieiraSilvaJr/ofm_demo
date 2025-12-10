@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ofm_demo/Resources/DSColors.dart';
+import 'package:ofm_demo/Commons/Widgets/CustomCircularProgressIndicator.dart';
 import 'package:ofm_demo/Sources/Base/BasePresenter.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
@@ -41,15 +41,9 @@ class _BaseViewState extends State<BaseView> {
                 ? Container(
                     height: double.infinity,
                     width: double.infinity,
-                    color: widget.presenter.isOpaque
-                        ? Colors.white
-                        : Colors.white.withAlpha(180),
+                    color: Colors.white,
                     child: Center(
-                      child: SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: CircularProgressIndicator(
-                              color: DSColors().primaryColor)),
+                      child: CustomCircularProgressIndicator(),
                     ),
                   )
                 : Container();

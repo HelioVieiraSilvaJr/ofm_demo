@@ -25,7 +25,7 @@ class ShowcaseViewModel {
         .get('$_path', headers: {'Content-Type': 'application/json'});
 
     final cacheKey = 'showcase_$_path';
-    final showcase = ShowcaseModel.initFromMap(data: result.bodyResponse);
+    final showcase = ShowcaseModel.fromJson(result.bodyResponse);
     CacheManager.instance.set(cacheKey, showcase);
     _showcase = showcase;
     shouldUpdateUI!();
