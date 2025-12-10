@@ -21,7 +21,6 @@ class ShowcaseViewModel {
   // MARK: Services
   fetch() async {
     final network = Network();
-    print('==> Fetching Showcase Data from path: $_path');
     try {
       final result = await network
         .get('$_path', headers: {'Content-Type': 'application/json'});

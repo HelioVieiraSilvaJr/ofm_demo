@@ -13,11 +13,17 @@ class ProductDetailPresenter extends BasePresenter {
   final AppCoordinator? coordinator;
 
   ProductDetailPresenter(
-      {required this.viewModel, required this.appBar, this.coordinator});
+      {required this.viewModel, required this.appBar, this.coordinator}) {
+    _bindEvents();
+  }
 
   // MARK: - BindEvents
-  bindEvents() {
+  _bindEvents() {
     viewModel.shouldShowError = () {};
+
+    viewModel.shouldShowLoading = (isLoading) {
+      setLoading(isLoading);
+    };
   }
 
   // MARK: - Actions

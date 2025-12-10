@@ -20,7 +20,7 @@ class ProductDetailDescription extends StatelessWidget {
         children: [
           // 3) Título do produto
           Text(
-            product?.title ?? '-?-',
+            product?.title ?? '',
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
@@ -47,7 +47,7 @@ class ProductDetailDescription extends StatelessWidget {
                 ],
               ),
             Text(
-              product?.price ?? 'R\$ 0,00',
+              product?.price ?? '',
               style: TextStyle(
                 fontSize: fontSizePrices,
                 fontWeight: FontWeight.bold,

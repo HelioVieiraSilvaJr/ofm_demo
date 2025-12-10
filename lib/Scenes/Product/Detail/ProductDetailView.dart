@@ -37,6 +37,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
   @override
   Widget build(BuildContext context) {
     return BaseView(
+        appBar: presenter.appBar,
         body: SingleChildScrollView(
           child: RxBuilder(builder: (context) {
             return Column(

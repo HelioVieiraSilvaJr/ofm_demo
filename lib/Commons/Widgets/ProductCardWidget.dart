@@ -22,25 +22,23 @@ class ProductCardWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // 1) Imagem com tag de frete grátis
-            Expanded(
-              flex: 5,
+            SizedBox(
+              width: double.infinity,
+              height: 200,
               child: Stack(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(0),
-                    child: SizedBox(
-                      width: double.infinity,
-                      height: double.infinity,
-                      child: CachedNetworkImage(
-                        imageUrl: item.imageUrl,
-                        cacheManager: CacheConfig.cacheManager,
-                        placeholder: (context, url) => Center(
-                          child: CustomCircularProgressIndicator(),
-                        ),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                        fit: BoxFit.cover,
+                  SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: CachedNetworkImage(
+                      imageUrl: item.imageUrl,
+                      cacheManager: CacheConfig.cacheManager,
+                      placeholder: (context, url) => Center(
+                        child: CustomCircularProgressIndicator(),
                       ),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                      fit: BoxFit.cover,
                     ),
                   ),
                   // 2) Tag "Frete grátis" em cima da imagem, alinhado embaixo

@@ -18,7 +18,7 @@ class ShowcaseProductListHorizontalWidget extends StatelessWidget {
         children: [
           if (section.title != null && section.title!.isNotEmpty)
             Padding(
-              padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
+              padding: const EdgeInsets.only(left: 16, top: 24, bottom: 16),
               child: Text(
                 section.title!,
                 style: const TextStyle(
@@ -27,24 +27,25 @@ class ShowcaseProductListHorizontalWidget extends StatelessWidget {
                 ),
               ),
             ),
-          SizedBox(
-            height: 250,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: section.items.length,
-              itemBuilder: (context, index) {
-                final item = section.items[index];
-                return Padding(
-                  padding: EdgeInsets.only(
-                    left: index == 0 ? 16 : 4,
-                    right: index == section.items.length - 1 ? 16 : 4,
-                  ),
-                  child: SizedBox(
-                    width: 160,
-                    child: ProductCardWidget(item: item, onTap: onTap),
-                  ),
-                );
-              },
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: List.generate(
+                section.items.length,
+                (index) {
+                  final item = section.items[index];
+                  return Padding(
+                    padding: EdgeInsets.only(
+                      left: index == 0 ? 16 : 4,
+                      right: index == section.items.length - 1 ? 16 : 4,
+                    ),
+                    child: SizedBox(
+                      width: 160,
+                      child: ProductCardWidget(item: item, onTap: onTap),
+                    ),
+                  );
+                },
+              ),
             ),
           ),
         ],

@@ -22,11 +22,43 @@ class _ProductDetailListImagesWidgetState
   final Map<int, VideoPlayerController> _controllers = {};
   int _currentPage = 0;
   final Set<int> _failedControllers = {};
+  late PageController _pageController;
 
   @override
   void initState() {
     super.initState();
+    _pageController = PageController();
     // Inicialização de vídeos será feita de forma preguiçosa quando ficarem visíveis
+  }
+
+  @override
+  void didUpdateWidget(ProductDetailListImagesWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Se a lista de imagens mudou (novo SKU selecionado), limpar controladores antigos
+    // Comparar pelo tamanho e pela URL do primeiro item para detectar mudança de SKU
+    if (oldWidget.images.length != widget.images.length ||
+        (oldWidget.images.isNotEmpty &&
+            widget.images.isNotEmpty &&
+            oldWidget.images[0].url != widget.images[0].url)) {
+      _resetControllers();
+      _currentPage = 0;
+      // Forçar rebuild após resetar controladores
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          // Reset PageView para primeira posição
+          _pageController.jumpToPage(0);
+          setState(() {});
+        }
+      });
+    }
+  }
+
+  void _resetControllers() {
+    for (final c in _controllers.values) {
+      c.dispose();
+    }
+    _controllers.clear();
+    _failedControllers.clear();
   }
 
   Future<void> _ensureControllerInitialized(int index) async {
@@ -83,9 +115,13 @@ class _ProductDetailListImagesWidgetState
   void _playIfVideo(int index) {
     for (final entry in _controllers.entries) {
       if (entry.key == index) {
-        if (entry.value.value.isInitialized) entry.value.play();
+        if (entry.value.value.isInitialized) {
+          entry.value.play();
+        }
       } else {
-        if (entry.value.value.isPlaying) entry.value.pause();
+        if (entry.value.value.isPlaying) {
+          entry.value.pause();
+        }
       }
     }
   }
@@ -96,6 +132,7 @@ class _ProductDetailListImagesWidgetState
       c.dispose();
     }
     _controllers.clear();
+    _pageController.dispose();
     super.dispose();
   }
 
@@ -107,6 +144,7 @@ class _ProductDetailListImagesWidgetState
           height: MediaQuery.of(context).size.width * 1.2,
           width: double.infinity,
           child: PageView.builder(
+            controller: _pageController,
             itemCount: widget.images.length,
             onPageChanged: (index) {
               setState(() => _currentPage = index);
@@ -116,7 +154,7 @@ class _ProductDetailListImagesWidgetState
               final img = widget.images[index];
               if (img.type.toLowerCase() == 'video') {
                 return VisibilityDetector(
-                  key: Key('video-$index'),
+                  key: Key('video-$index-${img.url}'),
                   onVisibilityChanged: (info) {
                     final visible = info.visibleFraction > 0.5;
                     final c = _controllers[index];

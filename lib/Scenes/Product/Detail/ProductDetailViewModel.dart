@@ -13,6 +13,7 @@ class ProductDetailViewModel {
   RxNotifier<ProductSKU?> get selectedSKU => _selectedSKU;
 
   Function? shouldShowError;
+  Function(bool)? shouldShowLoading;
 
   ProductDetailViewModel({required this.path});
 
@@ -33,6 +34,7 @@ class ProductDetailViewModel {
 
   // MARK: Services
   fetch() async {
+    shouldShowLoading?.call(true);
     final network = Network();
     final result =
         await network.get(path, headers: {'Content-Type': 'application/json'});
@@ -48,5 +50,6 @@ class ProductDetailViewModel {
     CacheManager.instance.set(cacheKey, product);
     _productModel.value = product;
     _selectedSKU.value = product.productSKU.first;
+    shouldShowLoading?.call(false);
   }
 }
