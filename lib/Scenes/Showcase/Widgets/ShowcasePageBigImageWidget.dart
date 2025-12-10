@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ofm_demo/Commons/Models/ItemModel.dart';
 import 'package:ofm_demo/Commons/Models/SectionModel.dart';
 import 'package:ofm_demo/Commons/Widgets/CustomCircularProgressIndicator.dart';
+import 'package:ofm_demo/Sources/CacheConfig.dart';
 
 class ShowcasePageBigImageWidget extends StatelessWidget {
   final SectionModel section;
@@ -13,6 +14,7 @@ class ShowcasePageBigImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final imageUrl = section.items.isNotEmpty ? section.items[0].imageUrl : '';
     return GestureDetector(
       onTap: () {
         if (section.items.isNotEmpty) {
@@ -20,12 +22,16 @@ class ShowcasePageBigImageWidget extends StatelessWidget {
         }
       },
       child: CachedNetworkImage(
-        imageUrl: section.items.isNotEmpty ? section.items[0].imageUrl : '',
+        imageUrl: imageUrl,
         width: double.infinity,
         fit: BoxFit.cover,
+        cacheKey: imageUrl,
+        cacheManager: CacheConfig.cacheManager,
         placeholder: (context, url) =>
             Center(child: CustomCircularProgressIndicator()),
-        errorWidget: (context, url, error) => Icon(Icons.error),
+        errorWidget: (context, url, error) {
+          return Icon(Icons.error);
+        },
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Commons/Models/ItemModel.dart';
 import 'package:ofm_demo/Commons/Widgets/CustomCircularProgressIndicator.dart';
+import 'package:ofm_demo/Sources/CacheConfig.dart';
 
 class ProductCardWidget extends StatelessWidget {
   final ItemModel item;
@@ -32,6 +33,7 @@ class ProductCardWidget extends StatelessWidget {
                       height: double.infinity,
                       child: CachedNetworkImage(
                         imageUrl: item.imageUrl,
+                        cacheManager: CacheConfig.cacheManager,
                         placeholder: (context, url) => Center(
                           child: CustomCircularProgressIndicator(),
                         ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ofm_demo/Commons/Models/ItemModel.dart';
 import 'package:ofm_demo/Commons/Models/SectionModel.dart';
 import 'package:ofm_demo/Commons/Widgets/CustomCircularProgressIndicator.dart';
+import 'package:ofm_demo/Sources/CacheConfig.dart';
 
 class ShowcaseCategoriesWidget extends StatelessWidget {
   final SectionModel section;
@@ -50,6 +51,7 @@ class ShowcaseCategoriesWidget extends StatelessWidget {
                           CachedNetworkImage(
                             imageUrl:
                                 item1?.imageUrl ?? 'https://placehold.co/150',
+                            cacheManager: CacheConfig.cacheManager,
                             placeholder: (context, url) =>
                                 CustomCircularProgressIndicator(),
                             errorWidget: (context, url, error) =>
@@ -91,6 +93,7 @@ class ShowcaseCategoriesWidget extends StatelessWidget {
                           CachedNetworkImage(
                             imageUrl:
                                 item2?.imageUrl ?? 'https://placehold.co/150',
+                            cacheManager: CacheConfig.cacheManager,
                             placeholder: (context, url) =>
                                 CustomCircularProgressIndicator(),
                             errorWidget: (context, url, error) =>
@@ -137,6 +140,7 @@ class ShowcaseCategoriesWidget extends StatelessWidget {
                           CachedNetworkImage(
                             imageUrl:
                                 item3?.imageUrl ?? 'https://placehold.co/150',
+                            cacheManager: CacheConfig.cacheManager,
                             placeholder: (context, url) =>
                                 CustomCircularProgressIndicator(),
                             errorWidget: (context, url, error) =>
@@ -178,6 +182,7 @@ class ShowcaseCategoriesWidget extends StatelessWidget {
                           CachedNetworkImage(
                             imageUrl:
                                 item4?.imageUrl ?? 'https://placehold.co/150',
+                            cacheManager: CacheConfig.cacheManager,
                             placeholder: (context, url) =>
                                 CustomCircularProgressIndicator(),
                             errorWidget: (context, url, error) =>

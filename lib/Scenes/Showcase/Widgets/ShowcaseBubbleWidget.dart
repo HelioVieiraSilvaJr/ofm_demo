@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ofm_demo/Commons/Models/ItemModel.dart';
 import 'package:ofm_demo/Commons/Models/SectionModel.dart';
 import 'package:ofm_demo/Commons/Widgets/CustomCircularProgressIndicator.dart';
+import 'package:ofm_demo/Sources/CacheConfig.dart';
 
 class ShowcaseBubbleWidget extends StatefulWidget {
   final SectionModel section;
@@ -42,6 +43,7 @@ class _ShowcaseBubbleWidgetState extends State<ShowcaseBubbleWidget> {
                       width: 70,
                       height: 70,
                       fit: BoxFit.cover,
+                      cacheManager: CacheConfig.cacheManager,
                       placeholder: (context, url) =>
                           CustomCircularProgressIndicator(),
                       errorWidget: (context, url, error) => Icon(Icons.error),
