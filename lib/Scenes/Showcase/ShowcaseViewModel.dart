@@ -21,13 +21,25 @@ class ShowcaseViewModel {
   // MARK: Services
   fetch() async {
     final network = Network();
-    final result = await network
+    print('==> Fetching Showcase Data from path: $_path');
+    try {
+      final result = await network
         .get('$_path', headers: {'Content-Type': 'application/json'});
 
-    final cacheKey = 'showcase_$_path';
-    final showcase = ShowcaseModel.fromJson(result.bodyResponse);
-    CacheManager.instance.set(cacheKey, showcase);
-    _showcase = showcase;
-    shouldUpdateUI!();
+      final cacheKey = 'showcase_$_path';
+      final showcase = ShowcaseModel.fromJson(result.bodyResponse);
+      CacheManager.instance.set(cacheKey, showcase);
+      _showcase = showcase;
+      shouldUpdateUI?.call();
+    } catch (e) {
+      // Optionally, try to load from cache
+      final cacheKey = 'showcase_$_path';
+      final cachedShowcase = CacheManager.instance.get(cacheKey);
+      if (cachedShowcase != null) {
+        _showcase = cachedShowcase as ShowcaseModel;
+        print('==> Loaded Showcase Data from cache');
+        shouldUpdateUI?.call();
+      }
+    }
   }
 }

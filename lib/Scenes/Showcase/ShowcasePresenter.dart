@@ -23,7 +23,7 @@ class ShowcasePresenter extends BasePresenter {
   // MARK: BindEvents
   _bindEvents() {
     viewModel.shouldUpdateUI = () {
-      this.sections.value = viewModel.sections;
+      sections.value = viewModel.sections;
       setLoading(false);
     };
   }
