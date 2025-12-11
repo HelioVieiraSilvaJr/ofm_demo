@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ofm_demo/Scenes/Checkout/CheckoutCoordinator.dart';
 import 'package:ofm_demo/Scenes/Home/HomeView.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailPresenter.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailView.dart';
@@ -98,7 +99,10 @@ class AppCoordinator implements Coordinator {
   }
 
   void goToCart() {
-    debugPrint('Navigate to cart - to be implemented');
-    // Implementar navegação para o carrinho quando a tela estiver pronta
+    final checkoutCoordinator = CheckoutCoordinator(
+      context: context,
+      appCoordinator: this,
+    );
+    checkoutCoordinator.start();
   }
 }

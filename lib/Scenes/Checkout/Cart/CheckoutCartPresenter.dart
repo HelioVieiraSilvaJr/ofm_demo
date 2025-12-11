@@ -11,12 +11,18 @@ class CheckoutCartPresenter extends BasePresenter {
 
   // MARK: - BindEvents
   _bindEvents() {
-    // Bind events here
+    viewModel.shouldShowLoading = (isLoading) {
+      setLoading(isLoading);
+    };
+
+    viewModel.shouldShowError = () {};
   }
 
   // MARK: - Actions
   // Add action handlers here
 
   // MARK: - Methods
-  // Add additional methods here
+  fetch() {
+    viewModel.fetch();
+  }
 }
