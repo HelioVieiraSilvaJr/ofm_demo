@@ -20,17 +20,16 @@ class ProductCardWidget extends StatelessWidget {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             // 1) Imagem com tag de frete grátis
-            SizedBox(
-              width: double.infinity,
-              height: 200,
-              child: Stack(
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: CachedNetworkImage(
+            Flexible(
+              child: SizedBox(
+                width: double.infinity,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    CachedNetworkImage(
                       imageUrl: item.imageUrl,
                       cacheManager: CacheConfig.cacheManager,
                       placeholder: (context, url) => Center(
@@ -40,30 +39,30 @@ class ProductCardWidget extends StatelessWidget {
                           const Icon(Icons.error),
                       fit: BoxFit.cover,
                     ),
-                  ),
-                  // 2) Tag "Frete grátis" em cima da imagem, alinhado embaixo
-                  if (item.tag != null)
-                    Positioned(
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                        ),
-                        child: Text(
-                          item.tag ?? '',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
+                    // 2) Tag "Frete grátis" em cima da imagem, alinhado embaixo
+                    if (item.tag != null)
+                      Positioned(
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                          ),
+                          child: Text(
+                            item.tag ?? '',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                ],
+                  ],
+                ),
               ),
             ),
             // Container para título e preço
@@ -71,6 +70,7 @@ class ProductCardWidget extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   // 3) Título do produto
                   Text(
@@ -85,33 +85,38 @@ class ProductCardWidget extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   // 4) Preço promocional e preço original
-                  Row(children: [
-                    if (item.pricePromotional != null)
-                      Row(
-                        children: [
-                          Text(
-                            item.pricePromotional!,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.red,
+                  Row(
+                    children: [
+                      if (item.pricePromotional != null)
+                        Row(
+                          children: [
+                            Text(
+                              item.pricePromotional!,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.red,
+                              ),
                             ),
+                            const SizedBox(width: 8),
+                          ],
+                        ),
+                      Flexible(
+                        child: Text(
+                          item.price ?? 'R\$ 0,00',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            decoration: item.pricePromotional != null
+                                ? TextDecoration.lineThrough
+                                : TextDecoration.none,
                           ),
-                          const SizedBox(width: 8),
-                        ],
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                    Text(
-                      item.price ?? 'R\$ 0,00',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        decoration: item.pricePromotional != null
-                            ? TextDecoration.lineThrough
-                            : TextDecoration.none,
-                      ),
-                    ),
-                  ]),
+                    ],
+                  ),
                 ],
               ),
             ),

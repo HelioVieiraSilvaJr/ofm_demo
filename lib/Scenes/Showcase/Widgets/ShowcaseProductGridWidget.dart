@@ -24,7 +24,9 @@ class ShowcaseProductGridWidget extends StatelessWidget {
       itemCount: section.items.length,
       itemBuilder: (context, index) {
         final item = section.items[index];
-        return ProductCardWidget(item: item, onTap: onTap);
+        return SizedBox(
+          child: ProductCardWidget(item: item, onTap: onTap),
+        );
       },
     );
   }

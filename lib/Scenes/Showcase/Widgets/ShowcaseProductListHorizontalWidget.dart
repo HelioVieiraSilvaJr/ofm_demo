@@ -41,6 +41,7 @@ class ShowcaseProductListHorizontalWidget extends StatelessWidget {
                     ),
                     child: SizedBox(
                       width: 160,
+                      height: 280,
                       child: ProductCardWidget(item: item, onTap: onTap),
                     ),
                   );
