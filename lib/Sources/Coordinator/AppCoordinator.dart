@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ofm_demo/Scenes/Checkout/CheckoutCoordinator.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:ofm_demo/Resources/DSColors.dart';
+import 'package:ofm_demo/Scenes/Checkout/Cart/CheckoutCartPresenter.dart';
+import 'package:ofm_demo/Scenes/Checkout/Cart/CheckoutCartView.dart';
+import 'package:ofm_demo/Scenes/Checkout/Cart/CheckoutCartViewModel.dart';
 import 'package:ofm_demo/Scenes/Home/HomeView.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailPresenter.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailView.dart';
@@ -99,10 +103,21 @@ class AppCoordinator implements Coordinator {
   }
 
   void goToCart() {
-    final checkoutCoordinator = CheckoutCoordinator(
-      context: context,
-      appCoordinator: this,
+    final appBar = AppBar(
+      title: SvgPicture.asset(
+        'lib/Resources/Assets/OFM.svg',
+        height: 18,
+      ),
+      backgroundColor: DSColors().secondaryColor,
     );
-    checkoutCoordinator.start();
+    final viewModel = CheckoutCartViewModel();
+    final presenter = CheckoutCartPresenter(viewModel, appBar);
+    presenter.coordinator = this;
+
+    navigatorKey.currentState?.push(
+      MaterialPageRoute(
+        builder: (_) => CheckoutCartView(presenter: presenter),
+      ),
+    );
   }
 }

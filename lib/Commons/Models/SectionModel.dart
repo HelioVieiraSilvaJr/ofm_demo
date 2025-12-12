@@ -1,5 +1,4 @@
 import 'package:ofm_demo/Commons/Enums/SectionType.dart';
-
 import 'ItemModel.dart';
 
 class SectionModel {

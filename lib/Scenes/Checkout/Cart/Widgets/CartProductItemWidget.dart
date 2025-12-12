@@ -72,8 +72,8 @@ class _CartProductItemWidgetState extends State<CartProductItemWidget> {
             mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(
-                width: 100,
-                height: 120,
+                width: 80,
+                height: 100,
                 child: Stack(
                   children: [
                     ClipRRect(
@@ -191,7 +191,7 @@ class _CartProductItemWidgetState extends State<CartProductItemWidget> {
 
                   // Tamanho
                   Text(
-                    'Tamanho: ${product.size}',
+                    'Maat: ${product.size}',
                     style: const TextStyle(
                       fontSize: 10,
                       color: Colors.black,
@@ -200,7 +200,7 @@ class _CartProductItemWidgetState extends State<CartProductItemWidget> {
 
                   // Cor
                   Text(
-                    'Cor: ${product.color ?? '-'}',
+                    'Kleur: ${product.color ?? '-'}',
                     style: const TextStyle(
                       fontSize: 10,
                       color: Colors.black,
@@ -209,7 +209,7 @@ class _CartProductItemWidgetState extends State<CartProductItemWidget> {
 
                   // SKU
                   Text(
-                    'SKU: ${product.sku}',
+                    'Artikelnummer: ${product.sku}',
                     style: const TextStyle(
                       fontSize: 10,
                       color: Colors.black,
