@@ -42,6 +42,8 @@ class CartProduct {
   final String productId;
   final String name;
   final String thumbSKU;
+  final int quantity;
+  final String? color;
   final String size;
   final String? tag;
   final String price;
@@ -52,6 +54,8 @@ class CartProduct {
     required this.productId,
     required this.name,
     required this.thumbSKU,
+    required this.quantity,
+    required this.color,
     required this.size,
     this.tag,
     required this.price,
@@ -64,6 +68,8 @@ class CartProduct {
       productId: json['productId'] as String? ?? '',
       name: json['name'] as String? ?? '',
       thumbSKU: json['thumbSKU'] as String? ?? '',
+      quantity: json['quantity'] as int? ?? 0,
+      color: json['color'] as String?,
       size: json['size'] as String? ?? '',
       tag: json['tag'] as String?,
       price: json['price'] as String? ?? '',
@@ -77,6 +83,8 @@ class CartProduct {
       'productId': productId,
       'name': name,
       'thumbSKU': thumbSKU,
+      'quantity': quantity,
+      'color': color,
       'size': size,
       'tag': tag,
       'price': price,

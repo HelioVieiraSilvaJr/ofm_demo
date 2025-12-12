@@ -92,7 +92,7 @@ class DSButtonWidget extends StatelessWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: ElevatedButton(
         onPressed:
             isEnabled && !isLoading ? () => onPressed?.call(buttonId) : null,
