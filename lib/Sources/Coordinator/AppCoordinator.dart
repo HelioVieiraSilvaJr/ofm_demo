@@ -7,6 +7,9 @@ import 'package:ofm_demo/Scenes/Checkout/Cart/CheckoutCartViewModel.dart';
 import 'package:ofm_demo/Scenes/Checkout/Delivery/CheckoutDeliveryPresenter.dart';
 import 'package:ofm_demo/Scenes/Checkout/Delivery/CheckoutDeliveryView.dart';
 import 'package:ofm_demo/Scenes/Checkout/Delivery/CheckoutDeliveryViewModel.dart';
+import 'package:ofm_demo/Scenes/Checkout/Payment/CheckoutPaymentsPresenter.dart';
+import 'package:ofm_demo/Scenes/Checkout/Payment/CheckoutPaymentsView.dart';
+import 'package:ofm_demo/Scenes/Checkout/Payment/CheckoutPaymentsViewModel.dart';
 import 'package:ofm_demo/Scenes/Home/HomeView.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailPresenter.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailView.dart';
@@ -172,6 +175,25 @@ class AppCoordinator implements Coordinator {
     navigatorKey.currentState?.push(
       MaterialPageRoute(
         builder: (_) => CheckoutDeliveryView(presenter: presenter),
+      ),
+    );
+  }
+
+  void goToPayments() {
+    final appBar = AppBar(
+      title: SvgPicture.asset(
+        'lib/Resources/Assets/OFM.svg',
+        height: 18,
+      ),
+      backgroundColor: DSColors().secondaryColor,
+    );
+    final viewModel = CheckoutPaymentsViewModel();
+    final presenter = CheckoutPaymentsPresenter(viewModel, appBar);
+    presenter.coordinator = this;
+
+    navigatorKey.currentState?.push(
+      MaterialPageRoute(
+        builder: (_) => CheckoutPaymentsView(presenter: presenter),
       ),
     );
   }

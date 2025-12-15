@@ -135,9 +135,6 @@ class _CheckoutDeliveryViewState extends State<CheckoutDeliveryView> {
   }
 
   void _handleContinue(String? value) {
-    debugPrint('Selected option: $selectedOptionUid');
-    if (selectedStoreIndex != null) {
-      debugPrint('Selected store: $selectedStoreIndex');
-    }
+    presenter.handlerNextStep(value);
   }
 }

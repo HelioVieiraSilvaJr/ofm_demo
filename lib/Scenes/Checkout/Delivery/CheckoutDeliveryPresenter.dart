@@ -24,6 +24,9 @@ class CheckoutDeliveryPresenter extends BasePresenter {
   }
 
   // MARK: - Actions
+  handlerNextStep(String? value) {
+    coordinator?.goToPayments();
+  }
 
   // MARK: - Methods
   fetch() {
