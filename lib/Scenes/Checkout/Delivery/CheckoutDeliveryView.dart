@@ -130,6 +130,7 @@ class _CheckoutDeliveryViewState extends State<CheckoutDeliveryView> {
     return DSButtonWidget(
         title: 'Ga verder naar betaling',
         type: DSButtonType.primary,
+        state: isValid ? DSButtonState.enabled : DSButtonState.disabled,
         onTap: isValid ? _handleContinue : null);
   }
 

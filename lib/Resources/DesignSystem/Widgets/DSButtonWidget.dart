@@ -32,7 +32,7 @@ class DSButtonWidget extends StatelessWidget {
     final Color backgroundColor =
         isEnabled ? type.backgroundColor : Colors.grey;
 
-    final Color textColor = isEnabled ? type.textColor : Colors.grey;
+    final Color textColor = isEnabled ? type.textColor : Colors.white;
 
     final Color borderColor = type == DSButtonType.secondary
         ? (isEnabled ? DSColors().primaryColor : Colors.grey)
