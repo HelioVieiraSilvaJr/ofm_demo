@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ofm_demo/Commons/Enums/ActionType.dart';
-import 'package:ofm_demo/Commons/Models/ItemModel.dart';
-import 'package:ofm_demo/Commons/Models/SectionModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Enums/ActionType.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Models/ItemModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Models/SectionModel.dart';
 import 'package:ofm_demo/Sources/Base/BasePresenter.dart';
 import 'package:ofm_demo/Scenes/Showcase/ShowcaseViewModel.dart';
 import 'package:ofm_demo/Sources/Coordinator/AppCoordinator.dart';

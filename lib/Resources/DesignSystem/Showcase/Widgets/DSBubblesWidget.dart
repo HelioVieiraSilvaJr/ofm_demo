@@ -1,22 +1,22 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:ofm_demo/Commons/Models/ItemModel.dart';
-import 'package:ofm_demo/Commons/Models/SectionModel.dart';
-import 'package:ofm_demo/Commons/Widgets/CustomCircularProgressIndicator.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Models/ItemModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Models/SectionModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Showcase/Widgets/DSCustomCircularProgressIndicator.dart';
 import 'package:ofm_demo/Sources/CacheConfig.dart';
 
-class ShowcaseBubbleWidget extends StatefulWidget {
+class DSBubblesWidget extends StatefulWidget {
   final SectionModel section;
   final Function(ItemModel) onTap;
 
-  const ShowcaseBubbleWidget(
+  const DSBubblesWidget(
       {super.key, required this.section, required this.onTap});
 
   @override
-  State<ShowcaseBubbleWidget> createState() => _ShowcaseBubbleWidgetState();
+  State<DSBubblesWidget> createState() => _DSBubblesWidgetState();
 }
 
-class _ShowcaseBubbleWidgetState extends State<ShowcaseBubbleWidget> {
+class _DSBubblesWidgetState extends State<DSBubblesWidget> {
   late final section = widget.section;
   late final onTap = widget.onTap;
 
@@ -45,7 +45,7 @@ class _ShowcaseBubbleWidgetState extends State<ShowcaseBubbleWidget> {
                       fit: BoxFit.cover,
                       cacheManager: CacheConfig.cacheManager,
                       placeholder: (context, url) =>
-                          CustomCircularProgressIndicator(),
+                          DSCustomCircularProgressIndicator(),
                       errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   ),

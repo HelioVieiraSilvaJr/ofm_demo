@@ -1,5 +1,5 @@
-import 'package:ofm_demo/Commons/Models/SectionModel.dart';
-import 'package:ofm_demo/Commons/Models/ShowcaseModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Models/SectionModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Models/ShowcaseModel.dart';
 import 'package:ofm_demo/Sources/CacheManager.dart';
 import 'package:ofm_demo/Sources/Network/Network.dart';
 

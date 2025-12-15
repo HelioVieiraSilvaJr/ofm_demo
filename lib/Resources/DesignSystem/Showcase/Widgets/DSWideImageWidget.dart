@@ -1,14 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:ofm_demo/Commons/Models/ItemModel.dart';
-import 'package:ofm_demo/Commons/Models/SectionModel.dart';
-import 'package:ofm_demo/Commons/Widgets/CustomCircularProgressIndicator.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Models/ItemModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Models/SectionModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Showcase/Widgets/DSCustomCircularProgressIndicator.dart';
 import 'package:ofm_demo/Sources/CacheConfig.dart';
 
-class ShowcaseWideImage extends StatelessWidget {
+class DSWideImageWidget extends StatelessWidget {
   final SectionModel section;
   final Function(ItemModel)? onTap;
-  const ShowcaseWideImage({super.key, required this.section, this.onTap});
+  const DSWideImageWidget({super.key, required this.section, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,8 @@ class ShowcaseWideImage extends StatelessWidget {
             child: CachedNetworkImage(
               imageUrl: item1?.imageUrl ?? 'https://placehold.co/150',
               cacheManager: CacheConfig.cacheManager,
-              placeholder: (context, url) => CustomCircularProgressIndicator(),
+              placeholder: (context, url) =>
+                  DSCustomCircularProgressIndicator(),
               errorWidget: (context, url, error) => Icon(Icons.error),
               fit: BoxFit.fitWidth,
             ),

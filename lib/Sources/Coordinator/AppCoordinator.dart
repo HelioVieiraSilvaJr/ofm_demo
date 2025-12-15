@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:ofm_demo/Resources/DSColors.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Colors/DSColors.dart';
 import 'package:ofm_demo/Scenes/Checkout/Cart/CheckoutCartPresenter.dart';
 import 'package:ofm_demo/Scenes/Checkout/Cart/CheckoutCartView.dart';
 import 'package:ofm_demo/Scenes/Checkout/Cart/CheckoutCartViewModel.dart';

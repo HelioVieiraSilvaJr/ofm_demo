@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
-import 'package:ofm_demo/Commons/Models/SectionModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Models/SectionModel.dart';
 
-class ShowcaseContentMarkdown extends StatelessWidget {
+class DSContentMarkdownWidget extends StatelessWidget {
   final SectionModel section;
   final Function(String) openLink;
   final ScrollController controller = ScrollController();
 
-  ShowcaseContentMarkdown(
+  DSContentMarkdownWidget(
       {super.key, required this.section, required this.openLink});
 
   @override

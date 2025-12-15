@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ofm_demo/Resources/DSColors.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Colors/DSColors.dart';
 
 class DSButtonWidget extends StatelessWidget {
   final String title;

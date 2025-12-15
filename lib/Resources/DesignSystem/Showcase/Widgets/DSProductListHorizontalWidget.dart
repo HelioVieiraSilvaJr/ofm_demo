@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:ofm_demo/Commons/Models/ItemModel.dart';
-import 'package:ofm_demo/Commons/Models/SectionModel.dart';
-import 'package:ofm_demo/Commons/Widgets/ProductCardWidget.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Models/ItemModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Models/SectionModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Showcase/Widgets/DSProductCardWidget.dart';
 
-class ShowcaseProductListHorizontalWidget extends StatelessWidget {
+class DSProductListHorizontalWidget extends StatelessWidget {
   final SectionModel section;
   final Function(ItemModel)? onTap;
-  const ShowcaseProductListHorizontalWidget(
+  const DSProductListHorizontalWidget(
       {super.key, required this.section, this.onTap});
 
   @override
@@ -42,7 +42,7 @@ class ShowcaseProductListHorizontalWidget extends StatelessWidget {
                     child: SizedBox(
                       width: 160,
                       height: 280,
-                      child: ProductCardWidget(item: item, onTap: onTap),
+                      child: DSProductCardWidget(item: item, onTap: onTap),
                     ),
                   );
                 },

@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:ofm_demo/Commons/Widgets/CustomCircularProgressIndicator.dart';
-import 'package:ofm_demo/Resources/DSColors.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Showcase/Widgets/DSCustomCircularProgressIndicator.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Colors/DSColors.dart';
 import 'package:ofm_demo/Sources/CacheConfig.dart';
 import 'package:ofm_demo/Sources/Coordinator/AppCoordinator.dart';
 import 'package:ofm_demo/firebase_options.dart';
@@ -63,7 +63,7 @@ class _MyAppState extends State<MyApp> {
       navigatorKey: navigatorKey,
       home: Scaffold(
         body: Center(
-          child: CustomCircularProgressIndicator(),
+          child: DSCustomCircularProgressIndicator(),
         ),
       ),
     );

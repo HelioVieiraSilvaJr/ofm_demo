@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Commons/Models/CartModel.dart';
-import 'package:ofm_demo/Commons/Widgets/DSButtonWidget.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Showcase/Widgets/DSButtonWidget.dart';
 
 class BillingSummaryWidget extends StatelessWidget {
   final BillingSummary billingSummary;

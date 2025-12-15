@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ofm_demo/Resources/DSColors.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Colors/DSColors.dart';
 
-class CustomCircularProgressIndicator extends StatelessWidget {
+class DSCustomCircularProgressIndicator extends StatelessWidget {
   final double size;
   final double strokeWidth;
   final Color color = DSColors().primaryColor;
 
-  CustomCircularProgressIndicator({
+  DSCustomCircularProgressIndicator({
     super.key,
     this.size = 60.0,
     this.strokeWidth = 4.0,

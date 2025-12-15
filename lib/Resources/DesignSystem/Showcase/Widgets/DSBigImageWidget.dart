@@ -1,15 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:ofm_demo/Commons/Models/ItemModel.dart';
-import 'package:ofm_demo/Commons/Models/SectionModel.dart';
-import 'package:ofm_demo/Commons/Widgets/CustomCircularProgressIndicator.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Models/ItemModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Models/SectionModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Showcase/Widgets/DSCustomCircularProgressIndicator.dart';
 import 'package:ofm_demo/Sources/CacheConfig.dart';
 
-class ShowcasePageBigImageWidget extends StatelessWidget {
+class DSBigImageWidget extends StatelessWidget {
   final SectionModel section;
   final Function(ItemModel) onTap;
 
-  const ShowcasePageBigImageWidget(
+  const DSBigImageWidget(
       {super.key, required this.section, required this.onTap});
 
   @override
@@ -28,7 +28,7 @@ class ShowcasePageBigImageWidget extends StatelessWidget {
         cacheKey: imageUrl,
         cacheManager: CacheConfig.cacheManager,
         placeholder: (context, url) =>
-            Center(child: CustomCircularProgressIndicator()),
+            Center(child: DSCustomCircularProgressIndicator()),
         errorWidget: (context, url, error) {
           return Icon(Icons.error);
         },

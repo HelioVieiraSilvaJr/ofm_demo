@@ -1,4 +1,4 @@
-import 'package:ofm_demo/Commons/Models/SectionModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Models/SectionModel.dart';
 
 class CartModel {
   final List<CartProduct> products;

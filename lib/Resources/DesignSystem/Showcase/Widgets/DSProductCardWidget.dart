@@ -1,14 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:ofm_demo/Commons/Models/ItemModel.dart';
-import 'package:ofm_demo/Commons/Widgets/CustomCircularProgressIndicator.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Models/ItemModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Showcase/Widgets/DSCustomCircularProgressIndicator.dart';
 import 'package:ofm_demo/Sources/CacheConfig.dart';
 
-class ProductCardWidget extends StatelessWidget {
+class DSProductCardWidget extends StatelessWidget {
   final ItemModel item;
   final Function(ItemModel)? onTap;
 
-  const ProductCardWidget({super.key, required this.item, this.onTap});
+  const DSProductCardWidget({super.key, required this.item, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class ProductCardWidget extends StatelessWidget {
                       imageUrl: item.imageUrl,
                       cacheManager: CacheConfig.cacheManager,
                       placeholder: (context, url) => Center(
-                        child: CustomCircularProgressIndicator(),
+                        child: DSCustomCircularProgressIndicator(),
                       ),
                       errorWidget: (context, url, error) =>
                           const Icon(Icons.error),

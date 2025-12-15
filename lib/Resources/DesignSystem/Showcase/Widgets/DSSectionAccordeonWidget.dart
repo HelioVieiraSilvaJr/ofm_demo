@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
-import 'package:ofm_demo/Commons/Models/SectionModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Models/SectionModel.dart';
 
-class SectionAccordeonWidget extends StatefulWidget {
+class DSSectionAccordeonWidget extends StatefulWidget {
   final SectionModel section;
 
-  const SectionAccordeonWidget({super.key, required this.section});
+  const DSSectionAccordeonWidget({super.key, required this.section});
 
   @override
-  State<SectionAccordeonWidget> createState() => _SectionAccordeonWidgetState();
+  State<DSSectionAccordeonWidget> createState() =>
+      _DSSectionAccordeonWidgetState();
 }
 
-class _SectionAccordeonWidgetState extends State<SectionAccordeonWidget> {
+class _DSSectionAccordeonWidgetState extends State<DSSectionAccordeonWidget> {
   late final SectionModel section = widget.section;
   final ScrollController controller = ScrollController();
   final Set<int> _expandedItems = {};

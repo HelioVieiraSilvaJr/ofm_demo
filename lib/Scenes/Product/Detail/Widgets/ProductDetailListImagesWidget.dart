@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:ofm_demo/Commons/Widgets/CustomCircularProgressIndicator.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Showcase/Widgets/DSCustomCircularProgressIndicator.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/Model/ProductModel.dart';
 import 'package:ofm_demo/Sources/CacheConfig.dart';
 import 'package:video_player/video_player.dart';
@@ -198,7 +198,7 @@ class _ProductDetailListImagesWidgetState
                       return Container(
                         color: Colors.black,
                         child: Center(
-                          child: CustomCircularProgressIndicator(),
+                          child: DSCustomCircularProgressIndicator(),
                         ),
                       );
                     }
@@ -207,7 +207,7 @@ class _ProductDetailListImagesWidgetState
                       return Container(
                         color: Colors.black,
                         child: Center(
-                          child: CustomCircularProgressIndicator(),
+                          child: DSCustomCircularProgressIndicator(),
                         ),
                       );
                     }
@@ -234,7 +234,7 @@ class _ProductDetailListImagesWidgetState
                 fit: BoxFit.cover,
                 cacheManager: CacheConfig.cacheManager,
                 placeholder: (context, url) => Center(
-                  child: CustomCircularProgressIndicator(),
+                  child: DSCustomCircularProgressIndicator(),
                 ),
                 errorWidget: (context, url, error) => Icon(Icons.error),
                 width: MediaQuery.of(context).size.width,

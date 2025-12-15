@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ofm_demo/Commons/Widgets/CustomCircularProgressIndicator.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Showcase/Widgets/DSCustomCircularProgressIndicator.dart';
 import 'package:ofm_demo/Sources/Base/BasePresenter.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
@@ -43,7 +43,7 @@ class _BaseViewState extends State<BaseView> {
                     width: double.infinity,
                     color: Colors.white,
                     child: Center(
-                      child: CustomCircularProgressIndicator(),
+                      child: DSCustomCircularProgressIndicator(),
                     ),
                   )
                 : Container();

@@ -1,4 +1,5 @@
-import 'package:ofm_demo/Commons/Enums/SectionType.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Enums/SectionType.dart';
+
 import 'ItemModel.dart';
 
 class SectionModel {
@@ -37,5 +38,3 @@ class SectionModel {
     return 'SectionModel(type: ${type.rawValue}, items: $items)';
   }
 }
-
-

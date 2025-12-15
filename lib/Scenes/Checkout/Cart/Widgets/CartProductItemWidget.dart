@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Commons/Models/CartModel.dart';
-import 'package:ofm_demo/Commons/Widgets/CustomCircularProgressIndicator.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Showcase/Widgets/DSCustomCircularProgressIndicator.dart';
 import 'package:ofm_demo/Sources/CacheConfig.dart';
 
 class CartProductItemWidget extends StatefulWidget {
@@ -75,7 +75,7 @@ class _CartProductItemWidgetState extends State<CartProductItemWidget> {
                           imageUrl: product.thumbSKU,
                           cacheManager: CacheConfig.cacheManager,
                           placeholder: (context, url) => Center(
-                            child: CustomCircularProgressIndicator(),
+                            child: DSCustomCircularProgressIndicator(),
                           ),
                           errorWidget: (context, url, error) =>
                               const Icon(Icons.error),

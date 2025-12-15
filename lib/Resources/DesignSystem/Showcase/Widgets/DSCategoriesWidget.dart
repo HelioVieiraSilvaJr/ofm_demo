@@ -1,15 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:ofm_demo/Commons/Models/ItemModel.dart';
-import 'package:ofm_demo/Commons/Models/SectionModel.dart';
-import 'package:ofm_demo/Commons/Widgets/CustomCircularProgressIndicator.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Models/ItemModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Models/SectionModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Showcase/Widgets/DSCustomCircularProgressIndicator.dart';
 import 'package:ofm_demo/Sources/CacheConfig.dart';
 
-class ShowcaseCategoriesWidget extends StatelessWidget {
+class DSCategoriesWidget extends StatelessWidget {
   final SectionModel section;
   final Function(ItemModel)? onTap;
-  const ShowcaseCategoriesWidget(
-      {super.key, required this.section, this.onTap});
+  const DSCategoriesWidget({super.key, required this.section, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +52,7 @@ class ShowcaseCategoriesWidget extends StatelessWidget {
                                 item1?.imageUrl ?? 'https://placehold.co/150',
                             cacheManager: CacheConfig.cacheManager,
                             placeholder: (context, url) =>
-                                CustomCircularProgressIndicator(),
+                                DSCustomCircularProgressIndicator(),
                             errorWidget: (context, url, error) =>
                                 Icon(Icons.error),
                             fit: BoxFit.cover,
@@ -95,7 +94,7 @@ class ShowcaseCategoriesWidget extends StatelessWidget {
                                 item2?.imageUrl ?? 'https://placehold.co/150',
                             cacheManager: CacheConfig.cacheManager,
                             placeholder: (context, url) =>
-                                CustomCircularProgressIndicator(),
+                                DSCustomCircularProgressIndicator(),
                             errorWidget: (context, url, error) =>
                                 Icon(Icons.error),
                             fit: BoxFit.cover,
@@ -142,7 +141,7 @@ class ShowcaseCategoriesWidget extends StatelessWidget {
                                 item3?.imageUrl ?? 'https://placehold.co/150',
                             cacheManager: CacheConfig.cacheManager,
                             placeholder: (context, url) =>
-                                CustomCircularProgressIndicator(),
+                                DSCustomCircularProgressIndicator(),
                             errorWidget: (context, url, error) =>
                                 Icon(Icons.error),
                             fit: BoxFit.cover,
@@ -184,7 +183,7 @@ class ShowcaseCategoriesWidget extends StatelessWidget {
                                 item4?.imageUrl ?? 'https://placehold.co/150',
                             cacheManager: CacheConfig.cacheManager,
                             placeholder: (context, url) =>
-                                CustomCircularProgressIndicator(),
+                                DSCustomCircularProgressIndicator(),
                             errorWidget: (context, url, error) =>
                                 Icon(Icons.error),
                             fit: BoxFit.cover,

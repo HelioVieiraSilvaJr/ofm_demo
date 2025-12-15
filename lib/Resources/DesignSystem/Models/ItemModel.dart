@@ -1,4 +1,4 @@
-import 'package:ofm_demo/Commons/Enums/ActionType.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Enums/ActionType.dart';
 
 class ItemModel {
   final String imageUrl;

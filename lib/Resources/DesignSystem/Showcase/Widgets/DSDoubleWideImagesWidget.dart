@@ -1,14 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:ofm_demo/Commons/Models/ItemModel.dart';
-import 'package:ofm_demo/Commons/Models/SectionModel.dart';
-import 'package:ofm_demo/Commons/Widgets/CustomCircularProgressIndicator.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Models/ItemModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Models/SectionModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Showcase/Widgets/DSCustomCircularProgressIndicator.dart';
 import 'package:ofm_demo/Sources/CacheConfig.dart';
 
-class ShowcaseDoubleWideImages extends StatelessWidget {
+class DSDoubleWideImagesWidget extends StatelessWidget {
   final SectionModel section;
   final Function(ItemModel)? onTap;
-  const ShowcaseDoubleWideImages(
+  const DSDoubleWideImagesWidget(
       {super.key, required this.section, this.onTap});
 
   @override
@@ -35,7 +35,7 @@ class ShowcaseDoubleWideImages extends StatelessWidget {
                     imageUrl: imageUrl1,
                     cacheManager: CacheConfig.cacheManager,
                     placeholder: (context, url) =>
-                        CustomCircularProgressIndicator(),
+                        DSCustomCircularProgressIndicator(),
                     errorWidget: (context, url, error) => Icon(Icons.error),
                     fit: BoxFit.cover,
                   ),
@@ -55,7 +55,7 @@ class ShowcaseDoubleWideImages extends StatelessWidget {
                     imageUrl: imageUrl2,
                     cacheManager: CacheConfig.cacheManager,
                     placeholder: (context, url) =>
-                        CustomCircularProgressIndicator(),
+                        DSCustomCircularProgressIndicator(),
                     errorWidget: (context, url, error) => Icon(Icons.error),
                     fit: BoxFit.cover,
                   ),
