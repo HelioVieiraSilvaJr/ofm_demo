@@ -44,15 +44,21 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                 ProductDetailDescription(presenter: presenter),
                 ProductDetailSelectedSKU(presenter: presenter),
                 ProductDetailSelectedSizeWidget(presenter: presenter),
-                DSButtonWidget(
-                  title: 'In winkelwagen',
-                  type: DSButtonType.primary,
-                  iconType: DSButtonIconType.cart,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: DSButtonWidget(
+                    title: 'In winkelwagen',
+                    type: DSButtonType.primary,
+                    iconType: DSButtonIconType.cart,
+                  ),
                 ),
-                DSButtonWidget(
-                  title: 'Vind vergelijkbare items',
-                  type: DSButtonType.secondary,
-                  iconType: DSButtonIconType.ai,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: DSButtonWidget(
+                    title: 'Vind vergelijkbare items',
+                    type: DSButtonType.secondary,
+                    iconType: DSButtonIconType.ai,
+                  ),
                 ),
                 DSShowcaseWidget(
                     sections: sections ?? [],

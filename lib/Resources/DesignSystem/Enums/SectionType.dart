@@ -10,6 +10,7 @@ enum SectionType {
   productListHorizontal,
   accordion,
   highlights,
+  bandListHorizontal,
   none;
 }
 
@@ -38,6 +39,8 @@ extension SectionTypeExtension on SectionType {
         return 'accordion';
       case SectionType.highlights:
         return 'highlights';
+      case SectionType.bandListHorizontal:
+        return 'bandListHorizontal';
       case SectionType.none:
         return 'none';
     }

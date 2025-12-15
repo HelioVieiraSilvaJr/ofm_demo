@@ -5,8 +5,10 @@ import 'package:rx_notifier/rx_notifier.dart';
 class CheckoutCartViewModel {
   // MARK: - Properties
   final String path = '/checkout/cart';
-  RxNotifier<CartModel?> _cartModel = RxNotifier(null);
+  final RxNotifier<CartModel?> _cartModel = RxNotifier(null);
   RxNotifier<CartModel?> get cartModel => _cartModel;
+
+  static RxNotifier<int> cartNumberProducts = RxNotifier(3);
 
   Function()? shouldShowError;
   Function(bool)? shouldShowLoading;

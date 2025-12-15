@@ -11,6 +11,7 @@ import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailViewModel.dart';
 import 'package:ofm_demo/Scenes/Showcase/ShowcasePresenter.dart';
 import 'package:ofm_demo/Scenes/Showcase/ShowcaseView.dart';
 import 'package:ofm_demo/Scenes/Splash/SplashView.dart';
+import 'package:rx_notifier/rx_notifier.dart';
 
 /// Interface base para todos os coordinators
 abstract class Coordinator {
@@ -61,10 +62,26 @@ class AppCoordinator implements Coordinator {
   // Métodos de navegação específicos
   void goToShowcase(String path, String? title) {
     final appbar = AppBar(
-      title: Text(
-        title ?? '',
-        style: TextStyle(fontSize: 18),
+      title: SvgPicture.asset(
+        'lib/Resources/Assets/OFM.svg',
+        height: 18,
       ),
+      backgroundColor: DSColors().secondaryColor,
+      actions: [
+        RxBuilder(builder: (context) {
+          return IconButton(
+            icon: Badge(
+              label: Text('${CheckoutCartViewModel.cartNumberProducts.value}'),
+              isLabelVisible:
+                  CheckoutCartViewModel.cartNumberProducts.value > 0,
+              child: const Icon(Icons.shopping_bag_outlined),
+            ),
+            onPressed: () {
+              goToCart();
+            },
+          );
+        }),
+      ],
     );
     final presenter = ShowcasePresenter(path: path, appBar: appbar);
     presenter.coordinator = this;
@@ -78,10 +95,26 @@ class AppCoordinator implements Coordinator {
 
   void goToProductDetail(String path, String? title) {
     final appbar = AppBar(
-      title: Text(
-        title ?? '',
-        style: TextStyle(fontSize: 18),
+      title: SvgPicture.asset(
+        'lib/Resources/Assets/OFM.svg',
+        height: 18,
       ),
+      backgroundColor: DSColors().secondaryColor,
+      actions: [
+        RxBuilder(builder: (context) {
+          return IconButton(
+            icon: Badge(
+              label: Text('${CheckoutCartViewModel.cartNumberProducts.value}'),
+              isLabelVisible:
+                  CheckoutCartViewModel.cartNumberProducts.value > 0,
+              child: const Icon(Icons.shopping_bag_outlined),
+            ),
+            onPressed: () {
+              goToCart();
+            },
+          );
+        }),
+      ],
     );
     final viewModel = ProductDetailViewModel(path: path);
     final presenter = ProductDetailPresenter(
