@@ -102,7 +102,7 @@ class DSButtonWidget extends StatelessWidget {
           disabledBackgroundColor: backgroundColor,
           disabledForegroundColor: textColor,
           elevation: type == DSButtonType.primary ? 2 : 0,
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
           shape: shape == DSButtonShape.rounded
               ? RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
