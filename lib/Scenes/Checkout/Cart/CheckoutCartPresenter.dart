@@ -53,6 +53,10 @@ class CheckoutCartPresenter extends BasePresenter {
     coordinator?.openLink(url);
   }
 
+  handlerNextStep(String? id) {
+    coordinator?.goToDelivery();
+  }
+
   // MARK: - Methods
   fetch() {
     viewModel.fetch();

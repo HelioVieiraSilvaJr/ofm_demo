@@ -1,3 +1,3 @@
-const kBaseURL = "https://51383649c660.ngrok-free.app";
+const kBaseURL = "https://n8n.htech-servidor.space/webhook";
 
 const kCacheEnabled = false;

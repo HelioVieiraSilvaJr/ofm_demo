@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Showcase/DSShowcaseWidget.dart';
-import 'package:ofm_demo/Resources/DesignSystem/Showcase/Widgets/DSButtonWidget.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Widgets/DSButtonWidget.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailPresenter.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/Widgets/ProductDetailDescription.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/Widgets/ProductDetailListImagesWidget.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Colors/DSColors.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Widgets/DSText.dart';
 
 class DSButtonWidget extends StatelessWidget {
   final String title;
@@ -9,7 +10,7 @@ class DSButtonWidget extends StatelessWidget {
   final DSButtonShape shape;
   final DSButtonIconType iconType;
   final String? buttonId;
-  final Function(String?)? onPressed;
+  final Function(String?)? onTap;
 
   const DSButtonWidget(
       {super.key,
@@ -20,7 +21,7 @@ class DSButtonWidget extends StatelessWidget {
       this.shape = DSButtonShape.rounded,
       this.iconType = DSButtonIconType.none,
       this.buttonId,
-      this.onPressed});
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -75,13 +76,10 @@ class DSButtonWidget extends StatelessWidget {
       }
 
       buttonChildren.add(
-        Text(
+        DSText.medium(
           title,
-          style: TextStyle(
-            color: textColor,
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
+          color: textColor,
+          fontWeight: FontWeight.w600,
         ),
       );
 
@@ -93,34 +91,37 @@ class DSButtonWidget extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: ElevatedButton(
-        onPressed:
-            isEnabled && !isLoading ? () => onPressed?.call(buttonId) : null,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor,
-          foregroundColor: textColor,
-          disabledBackgroundColor: backgroundColor,
-          disabledForegroundColor: textColor,
-          elevation: type == DSButtonType.primary ? 2 : 0,
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-          shape: shape == DSButtonShape.rounded
-              ? RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  side: BorderSide(
-                      color: borderColor,
-                      width: type == DSButtonType.secondary ? 2 : 0),
-                )
-              : RoundedRectangleBorder(
-                  borderRadius: BorderRadius.zero,
-                  side: BorderSide(
-                      color: borderColor,
-                      width: type == DSButtonType.secondary ? 2 : 0),
-                ),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: buttonChildren,
+      child: SizedBox(
+        width: double.infinity,
+        child: ElevatedButton(
+          onPressed:
+              isEnabled && !isLoading ? () => onTap?.call(buttonId) : null,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: backgroundColor,
+            foregroundColor: textColor,
+            disabledBackgroundColor: backgroundColor,
+            disabledForegroundColor: textColor,
+            elevation: type == DSButtonType.primary ? 2 : 0,
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+            shape: shape == DSButtonShape.rounded
+                ? RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    side: BorderSide(
+                        color: borderColor,
+                        width: type == DSButtonType.secondary ? 2 : 0),
+                  )
+                : RoundedRectangleBorder(
+                    borderRadius: BorderRadius.zero,
+                    side: BorderSide(
+                        color: borderColor,
+                        width: type == DSButtonType.secondary ? 2 : 0),
+                  ),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: buttonChildren,
+          ),
         ),
       ),
     );

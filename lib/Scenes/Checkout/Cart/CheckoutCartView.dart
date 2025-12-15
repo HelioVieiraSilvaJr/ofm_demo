@@ -75,7 +75,9 @@ class _CheckoutCartViewState extends State<CheckoutCartView> {
 
               // Resumo de cobrança
               BillingSummaryWidget(
-                  billingSummary: cartModel.value!.billingSummary),
+                billingSummary: cartModel.value!.billingSummary,
+                onNextStep: presenter.handlerNextStep,
+              ),
 
               const SizedBox(height: 16),
 

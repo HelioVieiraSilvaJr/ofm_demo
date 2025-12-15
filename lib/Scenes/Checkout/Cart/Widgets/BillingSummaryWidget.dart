@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Commons/Models/CartModel.dart';
-import 'package:ofm_demo/Resources/DesignSystem/Showcase/Widgets/DSButtonWidget.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Widgets/DSButtonWidget.dart';
 
 class BillingSummaryWidget extends StatelessWidget {
   final BillingSummary billingSummary;
+  final Function(String?)? onNextStep;
 
-  const BillingSummaryWidget({super.key, required this.billingSummary});
+  const BillingSummaryWidget(
+      {super.key, required this.billingSummary, this.onNextStep});
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +59,7 @@ class BillingSummaryWidget extends StatelessWidget {
               title: 'Verder naar bestellen',
               type: DSButtonType.primary,
               iconType: DSButtonIconType.cart,
+              onTap: onNextStep,
             ),
           )
         ],
