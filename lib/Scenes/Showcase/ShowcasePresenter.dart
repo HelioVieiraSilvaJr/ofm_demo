@@ -48,8 +48,8 @@ class ShowcasePresenter extends BasePresenter {
         coordinator?.goToCart();
         break;
       default:
-        coordinator?.goToCart();
         print('==> No action defined for this item');
+        break;
     }
   }
 
