@@ -202,5 +202,7 @@ class _CheckoutPaymentsViewState extends State<CheckoutPaymentsView> {
     } else if (selectedOption.type == 'giftcard') {
       debugPrint('Gift card code: ${giftCardCodeController.text}');
     }
+
+    presenter.handlerNextStep(selectedPaymentUid);
   }
 }

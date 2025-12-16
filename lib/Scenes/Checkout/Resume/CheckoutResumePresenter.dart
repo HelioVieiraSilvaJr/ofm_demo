@@ -1,22 +1,36 @@
+import 'package:flutter/material.dart';
 import 'package:ofm_demo/Scenes/Checkout/Resume/CheckoutResumeViewModel.dart';
 import 'package:ofm_demo/Sources/Base/BasePresenter.dart';
+import 'package:ofm_demo/Sources/Coordinator/AppCoordinator.dart';
 
 class CheckoutResumePresenter extends BasePresenter {
   // MARK: - Properties
   CheckoutResumeViewModel viewModel;
+  AppBar appBar;
+  AppCoordinator? coordinator;
 
-  CheckoutResumePresenter(this.viewModel) {
+  CheckoutResumePresenter(this.viewModel, this.appBar) {
     _bindEvents();
   }
 
   // MARK: - BindEvents
   _bindEvents() {
-    // Bind events here
+    viewModel.shouldShowLoading = (isLoading) {
+      setLoading(isLoading);
+    };
+
+    viewModel.shouldShowError = () {
+      // showError();
+    };
   }
 
   // MARK: - Actions
-  // Add action handlers here
+  handlerNextStep(String? id) {
+    // Handle next step action
+  }
 
   // MARK: - Methods
-  // Add additional methods here
+  fetch() {
+    viewModel.fetch();
+  }
 }

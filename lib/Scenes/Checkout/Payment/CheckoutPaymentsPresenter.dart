@@ -19,7 +19,9 @@ class CheckoutPaymentsPresenter extends BasePresenter {
   }
 
   // MARK: - Actions
-  // Add action handlers here
+  handlerNextStep(String? id) {
+    coordinator?.goToResume();
+  }
 
   // MARK: - Methods
   fetch() {
