@@ -230,6 +230,7 @@ class AppCoordinator implements Coordinator {
         height: 18,
       ),
       backgroundColor: DSColors().secondaryColor,
+      automaticallyImplyLeading: false,
     );
     final viewModel = CheckoutSuccessViewModel();
     final presenter = CheckoutSuccessPresenter(viewModel, appBar);
