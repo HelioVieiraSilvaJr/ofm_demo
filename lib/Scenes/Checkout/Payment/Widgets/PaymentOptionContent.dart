@@ -53,22 +53,27 @@ class PaymentOptionContent extends StatelessWidget {
     final isSvg = bandUrl.toLowerCase().endsWith('.svg');
 
     if (isSvg) {
-      return SvgPicture.network(
-        bandUrl,
-        height: 24,
-        width: 40,
-        fit: BoxFit.contain,
-        placeholderBuilder: (context) => Container(
-          height: 24,
-          width: 40,
-          color: Colors.grey.shade200,
-          child: Center(
-            child: SizedBox(
-              width: 16,
-              height: 16,
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
-                color: Colors.grey.shade400,
+      return ConstrainedBox(
+        constraints: const BoxConstraints(
+          maxHeight: 24,
+          maxWidth: 60,
+        ),
+        child: SvgPicture.network(
+          bandUrl,
+          fit: BoxFit.contain,
+          colorFilter: null, // Allow SVG to use its own colors
+          placeholderBuilder: (context) => Container(
+            height: 24,
+            width: 40,
+            color: Colors.grey.shade200,
+            child: Center(
+              child: SizedBox(
+                width: 16,
+                height: 16,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: Colors.grey.shade400,
+                ),
               ),
             ),
           ),
@@ -76,45 +81,49 @@ class PaymentOptionContent extends StatelessWidget {
       );
     }
 
-    return Image.network(
-      bandUrl,
-      height: 24,
-      width: 40,
-      fit: BoxFit.contain,
-      loadingBuilder: (context, child, loadingProgress) {
-        if (loadingProgress == null) return child;
-        return Container(
-          height: 24,
-          width: 40,
-          color: Colors.grey.shade200,
-          child: Center(
-            child: SizedBox(
-              width: 16,
-              height: 16,
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
-                value: loadingProgress.expectedTotalBytes != null
-                    ? loadingProgress.cumulativeBytesLoaded /
-                        loadingProgress.expectedTotalBytes!
-                    : null,
-                color: Colors.grey.shade400,
+    return ConstrainedBox(
+      constraints: const BoxConstraints(
+        maxHeight: 24,
+        maxWidth: 60,
+      ),
+      child: Image.network(
+        bandUrl,
+        fit: BoxFit.contain,
+        loadingBuilder: (context, child, loadingProgress) {
+          if (loadingProgress == null) return child;
+          return Container(
+            height: 24,
+            width: 40,
+            color: Colors.grey.shade200,
+            child: Center(
+              child: SizedBox(
+                width: 16,
+                height: 16,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  value: loadingProgress.expectedTotalBytes != null
+                      ? loadingProgress.cumulativeBytesLoaded /
+                          loadingProgress.expectedTotalBytes!
+                      : null,
+                  color: Colors.grey.shade400,
+                ),
               ),
             ),
-          ),
-        );
-      },
-      errorBuilder: (context, error, stackTrace) {
-        return Container(
-          height: 24,
-          width: 40,
-          color: Colors.grey.shade200,
-          child: Icon(
-            Icons.credit_card,
-            size: 16,
-            color: Colors.grey.shade400,
-          ),
-        );
-      },
+          );
+        },
+        errorBuilder: (context, error, stackTrace) {
+          return Container(
+            height: 24,
+            width: 40,
+            color: Colors.grey.shade200,
+            child: Icon(
+              Icons.credit_card,
+              size: 16,
+              color: Colors.grey.shade400,
+            ),
+          );
+        },
+      ),
     );
   }
 }

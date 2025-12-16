@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Widgets/DSButtonWidget.dart';
 import 'package:ofm_demo/Scenes/Checkout/Payment/CheckoutPaymentsPresenter.dart';
 import 'package:ofm_demo/Scenes/Checkout/Payment/Models/PaymentModel.dart';
-import 'package:ofm_demo/Scenes/Checkout/Payment/Widgets/PaymentOptionCard.dart';
-import 'package:ofm_demo/Scenes/Checkout/Payment/Widgets/CouponCard.dart';
+import 'package:ofm_demo/Scenes/Checkout/Payment/Widgets/CouponsSection.dart';
+import 'package:ofm_demo/Scenes/Checkout/Payment/Widgets/PaymentOptionsSection.dart';
 import 'package:ofm_demo/Sources/Base/BaseView.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
@@ -20,6 +20,7 @@ class _CheckoutPaymentsViewState extends State<CheckoutPaymentsView> {
   // MARK: - Properties
   late final presenter = widget.presenter;
   String? selectedPaymentUid;
+  String? selectedCouponUid;
 
   // Credit Card fields
   final TextEditingController cardNumberController = TextEditingController();
@@ -34,10 +35,28 @@ class _CheckoutPaymentsViewState extends State<CheckoutPaymentsView> {
   void initState() {
     super.initState();
     presenter.fetch();
+
+    // Add listeners to update button state when fields change
+    cardNumberController.addListener(_updateState);
+    cardNameController.addListener(_updateState);
+    expiryDateController.addListener(_updateState);
+    cvvController.addListener(_updateState);
+    giftCardCodeController.addListener(_updateState);
+  }
+
+  void _updateState() {
+    setState(() {});
   }
 
   @override
   void dispose() {
+    // Remove listeners before disposing
+    cardNumberController.removeListener(_updateState);
+    cardNameController.removeListener(_updateState);
+    expiryDateController.removeListener(_updateState);
+    cvvController.removeListener(_updateState);
+    giftCardCodeController.removeListener(_updateState);
+
     cardNumberController.dispose();
     cardNameController.dispose();
     expiryDateController.dispose();
@@ -61,40 +80,50 @@ class _CheckoutPaymentsViewState extends State<CheckoutPaymentsView> {
           return const Center(child: CircularProgressIndicator());
         }
 
-        final options = paymentModel.value!.options;
-        final coupons = paymentModel.value!.coupons;
-
-        return SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Coupons section
-                if (coupons.isNotEmpty) ...[
-                  ...coupons.map((coupon) => CouponCard(coupon: coupon)),
-                  const SizedBox(height: 24),
-                ],
-
-                // Payment options
-                ...options.map((option) => PaymentOptionCard(
-                      option: option,
-                      isSelected: selectedPaymentUid == option.uid,
-                      onTap: () => _handleOptionTap(option),
-                      cardNumberController: cardNumberController,
-                      cardNameController: cardNameController,
-                      expiryDateController: expiryDateController,
-                      cvvController: cvvController,
-                      giftCardCodeController: giftCardCodeController,
-                    )),
-                const SizedBox(height: 32),
-                _buildContinueButton(),
-              ],
-            ),
-          ),
-        );
+        return _buildContent(paymentModel.value!);
       },
     );
+  }
+
+  Widget _buildContent(PaymentModel paymentModel) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CouponsSection(
+              coupons: paymentModel.coupons,
+              selectedCouponUid: selectedCouponUid,
+              onCouponTap: _handleCouponTap,
+            ),
+            PaymentOptionsSection(
+              options: paymentModel.options,
+              selectedPaymentUid: selectedPaymentUid,
+              onOptionTap: _handleOptionTap,
+              cardNumberController: cardNumberController,
+              cardNameController: cardNameController,
+              expiryDateController: expiryDateController,
+              cvvController: cvvController,
+              giftCardCodeController: giftCardCodeController,
+            ),
+            const SizedBox(height: 32),
+            _buildContinueButton(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _handleCouponTap(Coupon coupon) {
+    setState(() {
+      // Toggle coupon selection
+      if (selectedCouponUid == coupon.uid) {
+        selectedCouponUid = null;
+      } else {
+        selectedCouponUid = coupon.uid;
+      }
+    });
   }
 
   void _handleOptionTap(PaymentOption option) {
@@ -156,14 +185,20 @@ class _CheckoutPaymentsViewState extends State<CheckoutPaymentsView> {
     final selectedOption = presenter.viewModel.paymentModel.value?.options
         .firstWhere((option) => option.uid == selectedPaymentUid);
 
-    debugPrint('Selected payment method: $selectedPaymentUid');
-    debugPrint('Payment type: ${selectedOption?.type}');
+    if (selectedOption == null) return;
 
-    if (selectedOption?.type == 'creditcard') {
+    debugPrint('Selected payment method: $selectedPaymentUid');
+    debugPrint('Payment type: ${selectedOption.type}');
+
+    if (selectedCouponUid != null) {
+      debugPrint('Selected coupon: $selectedCouponUid');
+    }
+
+    if (selectedOption.type == 'creditcard') {
       debugPrint('Card number: ${cardNumberController.text}');
       debugPrint('Card name: ${cardNameController.text}');
       debugPrint('Expiry date: ${expiryDateController.text}');
-    } else if (selectedOption?.type == 'giftcard') {
+    } else if (selectedOption.type == 'giftcard') {
       debugPrint('Gift card code: ${giftCardCodeController.text}');
     }
   }
