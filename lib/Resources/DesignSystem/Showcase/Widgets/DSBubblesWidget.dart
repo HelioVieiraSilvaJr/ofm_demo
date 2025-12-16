@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Models/ItemModel.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Models/SectionModel.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Showcase/Widgets/DSCustomCircularProgressIndicator.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Widgets/DSText.dart';
 import 'package:ofm_demo/Sources/CacheConfig.dart';
 
 class DSBubblesWidget extends StatefulWidget {
@@ -50,9 +51,8 @@ class _DSBubblesWidgetState extends State<DSBubblesWidget> {
                     ),
                   ),
                   SizedBox(height: 8),
-                  Text(
+                  DSText.compact(
                     item.title ?? '',
-                    style: TextStyle(fontSize: 12),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Models/ItemModel.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Models/SectionModel.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Showcase/Widgets/DSProductCardWidget.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Widgets/DSText.dart';
 
 class DSProductListHorizontalWidget extends StatelessWidget {
   final SectionModel section;
@@ -19,12 +20,9 @@ class DSProductListHorizontalWidget extends StatelessWidget {
           if (section.title != null && section.title!.isNotEmpty)
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 24, bottom: 16),
-              child: Text(
+              child: DSText.large(
                 section.title!,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+                fontWeight: FontWeight.bold,
               ),
             ),
           SingleChildScrollView(

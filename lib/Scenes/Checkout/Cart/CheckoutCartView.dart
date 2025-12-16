@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Showcase/DSShowcaseWidget.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Widgets/DSText.dart';
 import 'package:ofm_demo/Scenes/Checkout/Cart/CheckoutCartPresenter.dart';
 import 'package:ofm_demo/Scenes/Checkout/Cart/Widgets/CartProductItemWidget.dart';
 import 'package:ofm_demo/Scenes/Checkout/Cart/Widgets/BillingSummaryWidget.dart';
@@ -60,15 +61,12 @@ class _CheckoutCartViewState extends State<CheckoutCartView> {
                   },
                 )
               else
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(32),
                   child: Center(
-                    child: Text(
+                    child: DSText.large(
                       'Sua sacola está vazia',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey,
-                      ),
+                      color: Colors.grey,
                     ),
                   ),
                 ),

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Commons/Models/CartModel.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Showcase/Widgets/DSCustomCircularProgressIndicator.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Widgets/DSText.dart';
 import 'package:ofm_demo/Sources/CacheConfig.dart';
 
 class CartProductItemWidget extends StatefulWidget {
@@ -95,13 +96,10 @@ class _CartProductItemWidgetState extends State<CartProductItemWidget> {
                               color: Colors.red,
                               borderRadius: BorderRadius.circular(4),
                             ),
-                            child: Text(
+                            child: DSText.extraCompact(
                               product.tag!,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
@@ -132,10 +130,7 @@ class _CartProductItemWidgetState extends State<CartProductItemWidget> {
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 6),
-                              child: Text(
-                                '$quantity',
-                                style: const TextStyle(fontSize: 14),
-                              ),
+                              child: DSText.medium('$quantity'),
                             ),
                             InkWell(
                               onTap: _increase,
@@ -169,43 +164,29 @@ class _CartProductItemWidgetState extends State<CartProductItemWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Nome do produto
-                    Text(
+                    DSText.medium(
                       product.name,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black87,
-                      ),
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87,
                     ),
                     const SizedBox(height: 4),
 
                     // Tamanho
-                    Text(
+                    DSText.extraCompact(
                       'Maat: ${product.size}',
-                      style: const TextStyle(
-                        fontSize: 10,
-                        color: Colors.black,
-                      ),
+                      color: Colors.black,
                     ),
 
                     // Cor
-                    Text(
+                    DSText.extraCompact(
                       'Kleur: ${product.color ?? '-'}',
-                      style: const TextStyle(
-                        fontSize: 10,
-                        color: Colors.black,
-                      ),
+                      color: Colors.black,
                     ),
 
                     // SKU
-                    Text(
+                    DSText.extraCompact(
                       'Artikelnummer: ${product.sku}',
-                      style: const TextStyle(
-                        fontSize: 10,
-                        color: Colors.black,
-                      ),
+                      color: Colors.black,
                     ),
                     const SizedBox(height: 8),
 
@@ -217,30 +198,21 @@ class _CartProductItemWidgetState extends State<CartProductItemWidget> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             if (product.pricePromotional != null) ...[
-                              Text(
+                              DSText.compactWithDecoration(
                                 '€ ${product.price}',
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey,
-                                  decoration: TextDecoration.lineThrough,
-                                ),
+                                color: Colors.grey,
+                                decoration: TextDecoration.lineThrough,
                               ),
-                              Text(
+                              DSText.medium(
                                 '€ ${product.pricePromotional}',
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
                               ),
                             ] else
-                              Text(
+                              DSText.medium(
                                 '€ ${product.price}',
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
                               ),
                           ],
                         ),

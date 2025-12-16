@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Models/ItemModel.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Models/SectionModel.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Showcase/Widgets/DSCustomCircularProgressIndicator.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Widgets/DSText.dart';
 import 'package:ofm_demo/Sources/CacheConfig.dart';
 
 class DSCategoriesWidget extends StatelessWidget {
@@ -17,8 +18,6 @@ class DSCategoriesWidget extends StatelessWidget {
     final item3 = section.items.length > 2 ? section.items[2] : null;
     final item4 = section.items.length > 3 ? section.items[3] : null;
     const aspectRatio = 1.0;
-    const double sizeSectionTitle = 18.0;
-    const double sizeItemTitle = 16.0;
     const int blurItem = 100;
 
     return Padding(
@@ -27,12 +26,10 @@ class DSCategoriesWidget extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 16.0, bottom: 8.0),
-            child: Text(
+            child: DSText.large(
               section.title ?? '',
-              style: TextStyle(
-                  fontSize: sizeSectionTitle,
-                  color: Colors.black,
-                  fontWeight: FontWeight.normal),
+              fontWeight: FontWeight.normal,
+              color: Colors.black,
             ),
           ),
           Row(
@@ -65,12 +62,10 @@ class DSCategoriesWidget extends StatelessWidget {
                           Positioned(
                             left: 16,
                             bottom: 16,
-                            child: Text(
+                            child: DSText.large(
                               item1?.title ?? '',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: sizeItemTitle,
-                                  fontWeight: FontWeight.bold),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
@@ -107,12 +102,10 @@ class DSCategoriesWidget extends StatelessWidget {
                           Positioned(
                             left: 16,
                             bottom: 16,
-                            child: Text(
+                            child: DSText.large(
                               item2?.title ?? '',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: sizeItemTitle,
-                                  fontWeight: FontWeight.bold),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
@@ -154,12 +147,10 @@ class DSCategoriesWidget extends StatelessWidget {
                           Positioned(
                             left: 16,
                             bottom: 16,
-                            child: Text(
+                            child: DSText.large(
                               item3?.title ?? '',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: sizeItemTitle,
-                                  fontWeight: FontWeight.bold),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
@@ -196,12 +187,10 @@ class DSCategoriesWidget extends StatelessWidget {
                           Positioned(
                             left: 16,
                             bottom: 16,
-                            child: Text(
+                            child: DSText.large(
                               item4?.title ?? '',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: sizeItemTitle,
-                                  fontWeight: FontWeight.bold),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],

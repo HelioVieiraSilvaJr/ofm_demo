@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Models/SectionModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Widgets/DSText.dart';
 
 class DSBandListHorizontalWidget extends StatelessWidget {
   final SectionModel section;
@@ -17,12 +18,9 @@ class DSBandListHorizontalWidget extends StatelessWidget {
           if (section.title != null && section.title!.isNotEmpty)
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 16, bottom: 8),
-              child: Text(
+              child: DSText.medium(
                 section.title!,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                ),
+                fontWeight: FontWeight.bold,
               ),
             ),
           SingleChildScrollView(

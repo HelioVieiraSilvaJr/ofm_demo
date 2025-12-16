@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Commons/Models/CartModel.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Widgets/DSButtonWidget.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Widgets/DSText.dart';
 
 class BillingSummaryWidget extends StatelessWidget {
   final BillingSummary billingSummary;
@@ -72,26 +73,23 @@ class BillingSummaryWidget extends StatelessWidget {
     String value, {
     Color? color,
     bool isBold = false,
-    double? fontSize = 14,
   }) {
+    final fontWeight = isBold ? FontWeight.bold : FontWeight.normal;
+    final valueWeight = isBold ? FontWeight.bold : FontWeight.w600;
+    final textColor = color ?? Colors.black87;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
+        DSText.medium(
           label,
-          style: TextStyle(
-            fontSize: fontSize ?? 14,
-            fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
-            color: color ?? Colors.black87,
-          ),
+          fontWeight: fontWeight,
+          color: textColor,
         ),
-        Text(
+        DSText.medium(
           value,
-          style: TextStyle(
-            fontSize: fontSize ?? 14,
-            fontWeight: isBold ? FontWeight.bold : FontWeight.w600,
-            color: color ?? Colors.black87,
-          ),
+          fontWeight: valueWeight,
+          color: textColor,
         ),
       ],
     );

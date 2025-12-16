@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Models/SectionModel.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Colors/DSColors.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Widgets/DSText.dart';
 
 class ProductDetailHighlightsWidget extends StatelessWidget {
   final SectionModel section;
@@ -22,9 +23,8 @@ class ProductDetailHighlightsWidget extends StatelessWidget {
               Icon(Icons.check, color: DSColors().primaryColor, size: 16),
               SizedBox(width: 8),
               Expanded(
-                child: Text(
+                child: DSText.compact(
                   item.title ?? '',
-                  style: TextStyle(fontSize: 12),
                   softWrap: true,
                   overflow: TextOverflow.visible,
                 ),

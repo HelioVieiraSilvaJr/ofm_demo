@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Showcase/Widgets/DSCustomCircularProgressIndicator.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Widgets/DSButtonWidget.dart';
 import 'package:ofm_demo/Scenes/Checkout/Payment/CheckoutPaymentsPresenter.dart';
 import 'package:ofm_demo/Scenes/Checkout/Payment/Models/PaymentModel.dart';
@@ -77,7 +78,7 @@ class _CheckoutPaymentsViewState extends State<CheckoutPaymentsView> {
         final paymentModel = presenter.viewModel.paymentModel;
 
         if (paymentModel.value == null) {
-          return const Center(child: CircularProgressIndicator());
+          return Center(child: DSCustomCircularProgressIndicator());
         }
 
         return _buildContent(paymentModel.value!);

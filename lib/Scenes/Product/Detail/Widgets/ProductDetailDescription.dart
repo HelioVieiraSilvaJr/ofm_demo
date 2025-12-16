@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Widgets/DSText.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailPresenter.dart';
 
 class ProductDetailDescription extends StatelessWidget {
@@ -9,9 +10,6 @@ class ProductDetailDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final product = presenter.viewModel.productModel.value;
-    const fontSizeTitle = 18.0;
-    const fontSizePrices = 16.0;
-    const fontSizeTag = 14.0;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
@@ -19,15 +17,10 @@ class ProductDetailDescription extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // 3) Título do produto
-          Text(
+          DSText.large(
             product?.title ?? '',
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontSize: fontSizeTitle,
-              fontWeight: FontWeight.w500,
-              color: Colors.black87,
-            ),
+            fontWeight: FontWeight.w500,
+            color: Colors.black87,
           ),
           const SizedBox(height: 4),
           // 4) Preço promocional e preço original
@@ -35,27 +28,21 @@ class ProductDetailDescription extends StatelessWidget {
             if (product?.pricePromotional != null)
               Row(
                 children: [
-                  Text(
+                  DSText.large(
                     product!.pricePromotional!,
-                    style: TextStyle(
-                      fontSize: fontSizePrices,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.red,
-                    ),
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red,
                   ),
                   const SizedBox(width: 8),
                 ],
               ),
-            Text(
+            DSText.largeWithDecoration(
               product?.price ?? '',
-              style: TextStyle(
-                fontSize: fontSizePrices,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-                decoration: product?.pricePromotional != null
-                    ? TextDecoration.lineThrough
-                    : TextDecoration.none,
-              ),
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              decoration: product?.pricePromotional != null
+                  ? TextDecoration.lineThrough
+                  : TextDecoration.none,
             ),
           ]),
           const SizedBox(height: 8),
@@ -65,13 +52,10 @@ class ProductDetailDescription extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.red,
               ),
-              child: Text(
+              child: DSText.medium(
                 product?.tag ?? '',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: fontSizeTag,
-                  fontWeight: FontWeight.bold,
-                ),
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
               ),
             ),
         ],

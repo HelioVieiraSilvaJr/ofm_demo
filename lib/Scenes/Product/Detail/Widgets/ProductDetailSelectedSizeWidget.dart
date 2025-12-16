@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Widgets/DSText.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailPresenter.dart';
 
 class ProductDetailSelectedSizeWidget extends StatelessWidget {
@@ -30,13 +31,11 @@ class ProductDetailSelectedSizeWidget extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   alignment: Alignment.center,
-                  child: Text(
+                  child: DSText.compact(
                     size.size,
-                    style: TextStyle(
-                      color: size.available ? Colors.black : Colors.grey,
-                      fontWeight:
-                          isSelected ? FontWeight.bold : FontWeight.normal,
-                    ),
+                    color: size.available ? Colors.black : Colors.grey,
+                    fontWeight:
+                        isSelected ? FontWeight.bold : FontWeight.normal,
                   ),
                 );
 
@@ -102,13 +101,10 @@ class ProductDetailSelectedSizeWidget extends StatelessWidget {
                       size: 16,
                     ),
                     const SizedBox(width: 6),
-                    Text(
+                    DSText.compact(
                       selectedSize.senseOfUrgency!,
-                      style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      fontWeight: FontWeight.w600
                     ),
                   ],
                 ),

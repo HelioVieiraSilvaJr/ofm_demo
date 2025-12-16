@@ -2,6 +2,7 @@ import 'package:elegant_notification/elegant_notification.dart';
 import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/stacked_options.dart';
 import 'package:flutter/material.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Widgets/DSText.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
 class BasePresenter {
@@ -11,7 +12,7 @@ class BasePresenter {
   final bool isOpaque = false;
 
   ElegantNotification notificationError = ElegantNotification.error(
-      title: const Text(""), description: const Text(""));
+      title: DSText.large(""), description: DSText.medium(""));
 
   // Methods
   showMessageSuccess({String? title, required String message}) {
@@ -20,8 +21,8 @@ class BasePresenter {
       key: const Key('value'),
       position: Alignment.bottomRight,
       animationDuration: const Duration(milliseconds: 200),
-      title: title == null ? null : Text(title),
-      description: Text(message),
+      title: title == null ? null : DSText.large(title),
+      description: DSText.medium(message),
       progressBarHeight: 5,
       toastDuration: const Duration(milliseconds: 5000),
       progressBarPadding: const EdgeInsets.symmetric(
@@ -46,8 +47,8 @@ class BasePresenter {
       ),
       position: Alignment.topRight,
       animation: AnimationType.fromRight,
-      title: Text(title),
-      description: Text(message),
+      title: DSText.large(title),
+      description: DSText.medium(message),
       onDismiss: () {},
     );
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Widgets/DSText.dart';
 import '../../Resources/DesignSystem/Colors/DSColors.dart';
 
 class ScreenInDevelopment extends StatelessWidget {
@@ -12,9 +13,8 @@ class ScreenInDevelopment extends StatelessWidget {
           child: Wrap(
             alignment: WrapAlignment.center,
             children: [
-              Text(
+              DSText.large(
                 "Exibição não disponivel.",
-                // style: DSTextStyle().custom(fontSize: 20, color: Colors.white),
               ),
             ],
           ),

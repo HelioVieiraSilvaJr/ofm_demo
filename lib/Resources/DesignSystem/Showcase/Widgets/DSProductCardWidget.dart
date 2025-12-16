@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Models/ItemModel.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Showcase/Widgets/DSCustomCircularProgressIndicator.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Widgets/DSText.dart';
 import 'package:ofm_demo/Sources/CacheConfig.dart';
 
 class DSProductCardWidget extends StatelessWidget {
@@ -51,13 +52,10 @@ class DSProductCardWidget extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: Colors.red,
                           ),
-                          child: Text(
+                          child: DSText.extraCompact(
                             item.tag ?? '',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
@@ -73,15 +71,10 @@ class DSProductCardWidget extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // 3) Título do produto
-                  Text(
+                  DSText.compact(
                     item.title ?? 'Produto sem nome',
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black87,
-                    ),
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black87,
                   ),
                   const SizedBox(height: 4),
                   // 4) Preço promocional e preço original
@@ -90,29 +83,22 @@ class DSProductCardWidget extends StatelessWidget {
                       if (item.pricePromotional != null)
                         Row(
                           children: [
-                            Text(
+                            DSText.medium(
                               item.pricePromotional!,
-                              style: const TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.red,
-                              ),
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red,
                             ),
                             const SizedBox(width: 8),
                           ],
                         ),
                       Flexible(
-                        child: Text(
-                          item.price ?? 'R\$ 0,00',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            decoration: item.pricePromotional != null
-                                ? TextDecoration.lineThrough
-                                : TextDecoration.none,
-                          ),
-                          overflow: TextOverflow.ellipsis,
+                        child: DSText.mediumWithDecoration(
+                          item.price ?? '€ 0,00',
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          decoration: item.pricePromotional != null
+                              ? TextDecoration.lineThrough
+                              : TextDecoration.none,
                         ),
                       ),
                     ],

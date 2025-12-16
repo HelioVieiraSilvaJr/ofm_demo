@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:ofm_demo/Resources/DesignSystem/Models/SectionModel.dart';
+import 'package:ofm_demo/Resources/DesignSystem/Widgets/DSText.dart';
 
 class DSSectionAccordeonWidget extends StatefulWidget {
   final SectionModel section;
@@ -20,8 +21,6 @@ class _DSSectionAccordeonWidgetState extends State<DSSectionAccordeonWidget> {
 
   @override
   Widget build(BuildContext context) {
-    const fontSizeTitle = 16.0;
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
       child: Column(
@@ -56,13 +55,10 @@ class _DSSectionAccordeonWidgetState extends State<DSSectionAccordeonWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
-                          child: Text(
+                          child: DSText.large(
                             item.title ?? '',
-                            style: TextStyle(
-                              fontSize: fontSizeTitle,
-                              fontWeight: FontWeight.w400,
-                            ),
                             maxLines: 1,
+                            fontWeight: FontWeight.w600,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
