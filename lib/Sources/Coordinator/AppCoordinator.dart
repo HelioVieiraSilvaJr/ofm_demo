@@ -13,6 +13,9 @@ import 'package:ofm_demo/Scenes/Checkout/Payment/CheckoutPaymentsViewModel.dart'
 import 'package:ofm_demo/Scenes/Checkout/Resume/CheckoutResumePresenter.dart';
 import 'package:ofm_demo/Scenes/Checkout/Resume/CheckoutResumeView.dart';
 import 'package:ofm_demo/Scenes/Checkout/Resume/CheckoutResumeViewModel.dart';
+import 'package:ofm_demo/Scenes/Checkout/Success/CheckoutSuccessPresenter.dart';
+import 'package:ofm_demo/Scenes/Checkout/Success/CheckoutSuccessView.dart';
+import 'package:ofm_demo/Scenes/Checkout/Success/CheckoutSuccessViewModel.dart';
 import 'package:ofm_demo/Scenes/Home/HomeView.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailPresenter.dart';
 import 'package:ofm_demo/Scenes/Product/Detail/ProductDetailView.dart';
@@ -217,6 +220,32 @@ class AppCoordinator implements Coordinator {
       MaterialPageRoute(
         builder: (_) => CheckoutResumeView(presenter: presenter),
       ),
+    );
+  }
+
+  void goToSuccess() {
+    final appBar = AppBar(
+      title: SvgPicture.asset(
+        'lib/Resources/Assets/OFM.svg',
+        height: 18,
+      ),
+      backgroundColor: DSColors().secondaryColor,
+    );
+    final viewModel = CheckoutSuccessViewModel();
+    final presenter = CheckoutSuccessPresenter(viewModel, appBar);
+    presenter.coordinator = this;
+
+    navigatorKey.currentState?.push(
+      MaterialPageRoute(
+        builder: (_) => CheckoutSuccessView(presenter: presenter),
+      ),
+    );
+  }
+
+  void returnToHome() {
+    navigatorKey.currentState?.pushAndRemoveUntil(
+      MaterialPageRoute(builder: (_) => Homeview(coordinator: this)),
+      (route) => false,
     );
   }
 }

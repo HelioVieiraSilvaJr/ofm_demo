@@ -26,7 +26,7 @@ class CheckoutResumePresenter extends BasePresenter {
 
   // MARK: - Actions
   handlerNextStep(String? id) {
-    // Handle next step action
+    coordinator?.goToSuccess();
   }
 
   // MARK: - Methods
