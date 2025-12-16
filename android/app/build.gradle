@@ -33,6 +33,23 @@ android {
         versionName = "1.0"
     }
 
+    flavorDimensions = ["environment"]
+    productFlavors {
+        development {
+            dimension "environment"
+            applicationIdSuffix ".development"
+            versionNameSuffix "-dev"
+        }
+        homologation {
+            dimension "environment"
+            applicationIdSuffix ".homologation"
+            versionNameSuffix "-hml"
+        }
+        production {
+            dimension "environment"
+        }
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
